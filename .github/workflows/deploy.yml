@@ -24,9 +24,11 @@ jobs:
           localDir: './wp-content'
           remoteDir: '.'
           reverse: true
+          restoreMTime: false
           settings: 'ftp:auto-confirm=yes'
           options: >-
             --delete
+            --ignore-time
             --include-glob plugins/**
             --include-glob mu-plugins/**
             --include-glob themes/**
