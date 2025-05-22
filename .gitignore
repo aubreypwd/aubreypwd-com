@@ -34,3 +34,5 @@ wp-content/debug.log
 Icon?
 Thumbs.db
 wp-content/database
+
+.htaccess
