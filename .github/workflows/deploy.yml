@@ -25,7 +25,7 @@ jobs:
           remoteDir: '.'
           reverse: true
           restoreMTime: false
-          settings: 'ftp:auto-confirm=yes'
+          settings: 'set ftp:ssl-allow no; set ftp:auto-confirm yes'
           options: >-
             --delete
             --ignore-time
