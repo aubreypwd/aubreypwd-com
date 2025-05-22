@@ -21,8 +21,8 @@ jobs:
           port: ${{ secrets.DEPLOY_FTP_PORT }}
           user: ${{ secrets.DEPLOY_FTP_USER }}
           pass: ${{ secrets.DEPLOY_FTP_PASS }}
-          localDir: '.'
-          remoteDir: '.'
+          localDir: './wp-content'
+          remoteDir: '.' # Should be wp-content/
           reverse: true
           onlyNewer: true
           restoreMTime: true
