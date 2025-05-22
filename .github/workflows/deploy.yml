@@ -25,4 +25,5 @@ jobs:
           remoteDir: '.'
           reverse: true
           onlyNewer: true
+          restoreMTime: true
           settings: 'ftp:auto-confirm=yes'
