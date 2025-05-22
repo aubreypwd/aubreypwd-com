@@ -21,9 +21,16 @@ jobs:
           port: ${{ secrets.DEPLOY_FTP_PORT }}
           user: ${{ secrets.DEPLOY_FTP_USER }}
           pass: ${{ secrets.DEPLOY_FTP_PASS }}
-          localDir: './wp-content'
-          remoteDir: './wp-content'
+          localDir: '.'
+          remoteDir: '.'
           reverse: true
           onlyNewer: true
+          restoreMTime: true
           settings: 'ftp:auto-confirm=yes'
-          options: '--include-glob mu-plugins/** --include-glob plugins/** --include-glob themes/** --include-glob db.php --exclude-glob *'
+          options: >-
+            --delete
+            --include-glob plugins/**
+            --include-glob mu-plugins/**
+            --include-glob themes/**
+            --include-glob db.php
+            --exclude-glob *
