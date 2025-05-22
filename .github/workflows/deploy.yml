@@ -22,10 +22,8 @@ jobs:
           user: ${{ secrets.DEPLOY_FTP_USER }}
           pass: ${{ secrets.DEPLOY_FTP_PASS }}
           localDir: './wp-content'
-          remoteDir: '.' # Should be wp-content/
+          remoteDir: '.'
           reverse: true
-          onlyNewer: true
-          restoreMTime: true
           settings: 'ftp:auto-confirm=yes'
           options: >-
             --delete
