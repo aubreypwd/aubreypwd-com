@@ -1,4 +1,4 @@
-name: Auto-deploy to aubreypwd.com
+name: Deploy to aubreypwd.com
 
 on:
   push:
@@ -14,16 +14,16 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Deploy
+      - name: Deploy wp-content/*
         uses: pressidium/lftp-mirror-action@v1
         with:
           host: ${{ secrets.DEPLOY_FTP_HOST }}
           port: ${{ secrets.DEPLOY_FTP_PORT }}
           user: ${{ secrets.DEPLOY_FTP_USER }}
           pass: ${{ secrets.DEPLOY_FTP_PASS }}
-          localDir: '.'
-          remoteDir: '.'
+          localDir: './wp-content'
+          remoteDir: './wp-content'
           reverse: true
           onlyNewer: true
-          restoreMTime: true
           settings: 'ftp:auto-confirm=yes'
+          options: '--include-glob mu-plugins/** --include-glob plugins/** --include-glob themes/** --include-glob db.php --exclude-glob *'
