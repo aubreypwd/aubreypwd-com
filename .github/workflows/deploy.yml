@@ -1,0 +1,28 @@
+name: Auto-deploy to aubreypwd.com
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Deploy
+        uses: pressidium/lftp-mirror-action@v1
+        with:
+          host: ${{ secrets.DEPLOY_FTP_HOST }}
+          port: ${{ secrets.DEPLOY_FTP_PORT }}
+          user: ${{ secrets.DEPLOY_FTP_USER }}
+          pass: ${{ secrets.DEPLOY_FTP_PASS }}
+          localDir: '.'
+          remoteDir: ${{ secrets.DEPLOY_REMOTE_DIR }}
+          reverse: true
+          onlyNewer: true
+          settings: 'ftp:auto-confirm=yes'
