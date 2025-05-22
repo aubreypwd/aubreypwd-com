@@ -22,7 +22,7 @@ jobs:
           user: ${{ secrets.DEPLOY_FTP_USER }}
           pass: ${{ secrets.DEPLOY_FTP_PASS }}
           localDir: '.'
-          remoteDir: ${{ secrets.DEPLOY_REMOTE_DIR }}
+          remoteDir: '.'
           reverse: true
           onlyNewer: true
           settings: 'ftp:auto-confirm=yes'
