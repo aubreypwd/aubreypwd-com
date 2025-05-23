@@ -23,9 +23,9 @@ jobs:
           remote-port: ${{ secrets.DEPLOY_PORT }}
           remote-user: ${{ secrets.DEPLOY_USER }}
           remote-password: ${{ secrets.DEPLOY_PASS }}
-          local-path: "./"
-          remote-path: "./"
-          sync: full
+          local-path: .
+          remote-path: .
+          sync: delta
           debug: false
           sync-delta-excludes: |
             .git*
