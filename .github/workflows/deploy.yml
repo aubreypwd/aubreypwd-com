@@ -16,14 +16,16 @@ jobs:
       # From wp-content/ #
 
       - name: Upload db.php
-        uses: airvzxf/ftp-deployment-action@latest
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.DEPLOY_HOST }}
-          user: ${{ secrets.DEPLOY_USER }}
+          username: ${{ secrets.DEPLOY_USER }}
           password: ${{ secrets.DEPLOY_PASS }}
-          local_dir: .
-          remote_dir: .
-          delete: false # Just upload db.php
+          local-dir: .
+          server-dir: .
+          exclude: |
+            !db.php
+            **
 
       - name: Upload mu-plugins/
         uses: airvzxf/ftp-deployment-action@latest
