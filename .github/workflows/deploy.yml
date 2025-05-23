@@ -9,10 +9,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Code
         uses: actions/checkout@v4
-
       - name: Update Remote
         uses: appleboy/ssh-action@v1.0.0
         with:
@@ -20,4 +18,6 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
-          script: git -C /home/aubrtdyz/aubreypwd.com/wp-content pull
+          script: |
+            git -C /home/aubrtdyz/aubreypwd.com/wp-content reset --hard
+            git -C /home/aubrtdyz/aubreypwd.com/wp-content pull
