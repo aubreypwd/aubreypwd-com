@@ -19,12 +19,13 @@ jobs:
     - name: Deploy
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
-        server: ${{ secrets.DEPLOY_FTP_HOST }}
-        username: ${{ secrets.DEPLOY_FTP_USER }}
-        password: ${{ secrets.DEPLOY_FTP_PASS }}
+        server: ${{ secrets.DEPLOY_HOST }}
+        username: ${{ secrets.DEPLOY_USER }}
+        password: ${{ secrets.DEPLOY_PASS }}
         dry-run: false # Set to true for testing.
         exclude: |
-          .gitignore
-          .github/**
-          **/.git*
-          **/.git*/**
+          **
+          ! plugins/**
+          ! mu-plugins/**
+          ! themes/**
+          ! db.php
