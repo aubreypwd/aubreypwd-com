@@ -1,6 +1,6 @@
 <?php // phpcs:disable
 
-/**	Site Customizations */
+/** Site Customizations */
 
 // Remove featured image support.
 add_action( 'init', function() {
