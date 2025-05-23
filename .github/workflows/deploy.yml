@@ -23,10 +23,10 @@ jobs:
         with:
 
           # SFTP credentials
-          host: ${{ secrets.SFTP_HOST }}
-          port: ${{ secrets.SFTP_PORT }}
-          user: ${{ secrets.SFTP_USER }}
-          pass: ${{ secrets.SFTP_PASS }}
+          host: ${{ secrets.DEPLOY_HOST }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          user: ${{ secrets.DEPLOY_USER }}
+          pass: ${{ secrets.DEPLOY_PASS }}
 
           # lftp settings
           onlyNewer: true
