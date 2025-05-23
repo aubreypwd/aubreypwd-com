@@ -1,15 +1,15 @@
 <?php // phpcs:disable
 
+/**	Site Customizations */
+
 // Remove featured image support.
 add_action( 'init', function() {
-
 	remove_post_type_support( 'post', 'thumbnail' );
 	remove_post_type_support( 'page', 'thumbnail' );
 } );
 
 // Unregister default taxonomies.
 add_action( 'init', function() {
-
 	unregister_taxonomy_for_object_type( 'category', 'post' );
 	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 	unregister_taxonomy_for_object_type( 'media_category', 'attachment' );
@@ -18,7 +18,6 @@ add_action( 'init', function() {
 
 // Remove category and tag meta boxes.
 add_action( 'admin_menu', function() {
-
 	remove_meta_box( 'categorydiv', 'post', 'side' );
 	remove_meta_box( 'tagsdiv-post_tag', 'post', 'side' );
 } );
@@ -50,6 +49,7 @@ add_action( 'admin_init', function() {
 	}
 
 	wp_redirect( admin_url( 'edit.php' ) );
+
 	exit;
 } );
 
