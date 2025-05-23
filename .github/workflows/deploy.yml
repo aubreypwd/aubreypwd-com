@@ -22,7 +22,7 @@ jobs:
         server: ${{ secrets.DEPLOY_FTP_HOST }}
         username: ${{ secrets.DEPLOY_FTP_USER }}
         password: ${{ secrets.DEPLOY_FTP_PASS }}
-        dry-run: true
+        dry-run: false # Set to true for testing.
         exclude: |
           .gitignore
           .github/**
