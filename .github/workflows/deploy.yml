@@ -4,10 +4,12 @@ on:
     tags:
       - '*'
 jobs:
-  - name: "Checkout"
+
+  - name: Checkout
     uses: actions/checkout@v4
     with:
       fetch-depth: 0
+
   - name: "Deploy"
     uses: milanmk/actions-file-deployer@master
     with:
