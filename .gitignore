@@ -1,19 +1,18 @@
 
-uploads/
-upgrade/
-cache/
-backups/
-database/
+/uploads/
+/upgrade/
+/cache/
+/backups/
+/database/
 
-index.php
-advanced-cache.php
-object-cache.php
-debug.log
+/index.php
+/advanced-cache.php
+/object-cache.php
+/debug.log
+/.htaccess
 
 .DS_Store
 .AppleDouble
 .LSOverride
 Icon?
 Thumbs.db
-
-.htaccess
