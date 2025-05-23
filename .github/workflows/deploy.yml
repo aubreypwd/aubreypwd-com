@@ -8,23 +8,43 @@ on:
 
 jobs:
 
-  web-deploy:
+  deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
 
-    - name: Update repository
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-    - name: Deploy
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-      with:
-        server: ${{ secrets.DEPLOY_FTP_HOST }}
-        username: ${{ secrets.DEPLOY_FTP_USER }}
-        password: ${{ secrets.DEPLOY_FTP_PASS }}
-        dry-run: false # Set to true for testing.
-        exclude: |
-          .gitignore
-          .github/**
-          **/.git*
-          **/.git*/**
+      - name: Deploy
+        uses: pressidium/lftp-mirror-action@v1
+        with:
+
+          # SFTP credentials
+          host: ${{ secrets.SFTP_HOST }}
+          port: ${{ secrets.SFTP_PORT }}
+          user: ${{ secrets.SFTP_USER }}
+          pass: ${{ secrets.SFTP_PASS }}
+
+          # lftp settings
+          onlyNewer: true
+          settings: 'sftp:auto-confirm=yes'
+          forceSSL: false
+          verifyCertificate: false
+          restoreMTime: false # Ignore filetime, takes too long.
+
+          # Mirror command options
+          localDir: './'
+          remoteDir: './'
+          reverse: true
+          options: >-
+            --verbose
+            --delete
+            --exclude-glob *
+            --include-glob plugins/**
+            --include-glob mu-plugins/**
+            --include-glob themes/**
+            --include-glob db.php
+            --ignore-time
