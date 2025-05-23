@@ -41,10 +41,10 @@ jobs:
           reverse: true
           options: >-
             --verbose
-            --delete
             --exclude-glob *
             --include-glob plugins/**
             --include-glob mu-plugins/**
             --include-glob themes/**
             --include-glob db.php
+            --delete
             --ignore-time
