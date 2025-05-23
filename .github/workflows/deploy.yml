@@ -1,15 +1,18 @@
 name: Deploy
 
 on:
+
   push:
     tags:
       - '*'
 
 jobs:
+
   web-deploy:
     name: Deploy
     runs-on: ubuntu-latest
     steps:
+
     - name: Update repository
       uses: actions/checkout@v4
 
