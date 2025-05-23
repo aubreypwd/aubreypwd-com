@@ -9,9 +9,11 @@
 /object-cache.php
 /debug.log
 /.htaccess
+/.ftp*
 
 .DS_Store
 .AppleDouble
 .LSOverride
 Icon?
 Thumbs.db
+
