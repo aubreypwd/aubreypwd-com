@@ -1,38 +1,19 @@
-wp-config*
+
+uploads/
+upgrade/
+cache/
+backups/
+database/
 
 index.php
-license.txt
-manifest.json
-readme.html
-wp-activate.php
-wp-blog-header.php
-wp-comments-post.php
-wp-cron.php
-wp-links-opml.php
-wp-load.php
-wp-login.php
-wp-mail.php
-wp-settings.php
-wp-signup.php
-wp-trackback.php
-xmLrpc.php
-
-wp-includes/
-wp-admin/
-
-wp-content/uploads/
-wp-content/upgrade/
-wp-content/cache/
-wp-content/backups/
-wp-content/advanced-cache.php
-wp-content/object-cache.php
-wp-content/debug.log
+advanced-cache.php
+object-cache.php
+debug.log
 
 .DS_Store
 .AppleDouble
 .LSOverride
 Icon?
 Thumbs.db
-wp-content/database
 
 .htaccess

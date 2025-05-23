@@ -1,4 +1,4 @@
-name: Deploy to aubreypwd.com
+name: Deploy
 
 on:
   push:
@@ -6,31 +6,22 @@ on:
       - '*'
 
 jobs:
-  deploy:
+  web-deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+    - name: Update repository
+      uses: actions/checkout@v4
 
-      - name: Deploy wp-content/*
-        uses: pressidium/lftp-mirror-action@v1
-        with:
-          host: ${{ secrets.DEPLOY_FTP_HOST }}
-          port: ${{ secrets.DEPLOY_FTP_PORT }}
-          user: ${{ secrets.DEPLOY_FTP_USER }}
-          pass: ${{ secrets.DEPLOY_FTP_PASS }}
-          localDir: './wp-content'
-          remoteDir: '.'
-          reverse: true
-          restoreMTime: false
-          settings: 'set ftp:ssl-allow no; set ftp:auto-confirm yes'
-          options: >-
-            --delete
-            --ignore-time
-            --include-glob plugins/**
-            --include-glob mu-plugins/**
-            --include-glob themes/**
-            --include-glob db.php
-            --exclude-glob *
+    - name: Deploy
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.DEPLOY_FTP_HOST }}
+        username: ${{ secrets.DEPLOY_FTP_USER }}
+        password: ${{ secrets.DEPLOY_FTP_PASS }}
+        dry-run: true
+        exclude: |
+          .gitignore
+          .github/**
+          **/.git*
+          **/.git*/**
