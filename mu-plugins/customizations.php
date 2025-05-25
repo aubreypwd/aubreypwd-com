@@ -174,6 +174,18 @@ add_action( 'wp_head', function() {
 			margin: 0 0 15px 20px !important;
 		}
 
+		strong,
+		b {
+			font-weight: 600;
+		}
+
+		address,
+		cite,
+		em,
+		i {
+			font-style: italic;
+		}
+
 	</style>
 
 	<?php
