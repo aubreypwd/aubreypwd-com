@@ -66,11 +66,37 @@ add_action( 'admin_menu', function() {
 	);
 }, 20 );
 
+add_action( 'admin_head', function() {
+	?>
+
+	<style>
+
+		#adminmenu {
+			margin-top: -11px;
+		}
+
+		#wp-admin-bar-wp-logo {
+			display: none;
+		}
+
+	</style>
+
+	<?php
+} );
+
 // Custom styles.
 add_action( 'wp_head', function() {
 	?>
 
 	<style>
+
+		#wpadminbar {
+			background-color: #222222;
+		}
+
+		#wp-admin-bar-wp-logo {
+			display: none;
+		}
 
 		#back-to-top,
 		#header > div.group > div:nth-child(1) {
