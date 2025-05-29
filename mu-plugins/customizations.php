@@ -216,3 +216,11 @@ add_action( 'wp_head', function() {
 
 	<?php
 } );
+
+add_action( 'wp_head', function() {
+	?>
+
+	<meta name="follow.it-verification-code" content="maWa3ZU9dT2pHz0GgG0Z"/>
+
+	<?php
+} );
