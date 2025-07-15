@@ -308,7 +308,8 @@ namespace aubreypwd\theme;
 		<main>
 			<div class="content">
 
-				<?php if ( is_home() ) : ?>
+				<?php if ( is_home() ) : // Blog page. ?>
+
 					<?php if ( have_posts() ) : ?>
 						<?php while ( have_posts() ) : the_post(); ?>
 							<?php if ( is_latest_post() ) : ?>
@@ -329,7 +330,7 @@ namespace aubreypwd\theme;
 									</footer>
 								</article>
 
-							<?php else : ?>
+							<?php else : // Not latest post. ?>
 								<div class="article-link">
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									<span class="date"><?php the_date(); ?></span>
@@ -337,7 +338,9 @@ namespace aubreypwd\theme;
 							<?php endif; ?>
 						<?php endwhile; ?>
 					<?php endif; ?>
-				<?php else : ?>
+
+				<?php else : // Single or Page. ?>
+
 					<article>
 						<header>
 							<a href="<?php the_permalink(); ?>">
@@ -347,12 +350,15 @@ namespace aubreypwd\theme;
 
 						<?php the_content(); ?>
 
-						<footer>
-							<p class="date">
-								<?php echo get_the_date(); ?>
-							</p>
-						</footer>
+						<?php if ( ! is_page() ) : ?>
+							<footer>
+								<p class="date">
+									<?php echo get_the_date(); ?>
+								</p>
+							</footer>
+						<?php endif; ?>
 					</article>
+
 				<?php endif; ?>
 			</div>
 
