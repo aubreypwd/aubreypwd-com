@@ -3,7 +3,7 @@
 namespace aubreypwd\theme;
 
 // Menus.
-add_action( 'after_theme_setup', function() {
+add_action( 'init', function() {
 
 	register_nav_menu(
 		'aubreypwd/header',
