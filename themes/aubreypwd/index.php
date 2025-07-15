@@ -14,7 +14,7 @@ namespace aubreypwd\theme;
 
 		<style>
 
-			/* Critcal CSS */
+			/* Critcal & Mobile CSS */
 
 			/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
 			progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-box}html{font-family:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';line-height:1.15;-webkit-text-size-adjust:100%;tab-size:4}body{margin:0}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{border-color:currentcolor}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}legend{padding:0}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}
@@ -42,15 +42,12 @@ namespace aubreypwd\theme;
 			}
 
 			body {
+
 				background-color: var(--color-charchol);
-			}
-
-			html,
-			body {
-
 				color: var(--color-white);
 				font-family: Arial, sans-serif;
 				font-size: 14px;
+				line-height: 20px;
 
 				a:link {
 					color: var(--color-electric-blue);
@@ -60,6 +57,7 @@ namespace aubreypwd\theme;
 					color: var(--color-electric-purple);
 				}
 
+				/* Header & Footer */
 				> header,
 				> footer {
 
@@ -71,7 +69,7 @@ namespace aubreypwd\theme;
 						-ms-scroll-style: none;
 						border-bottom: 1px solid var(--color-jet);
 
-						::-webkit-scrollbar {
+						&::-webkit-scrollbar {
 							display: none;
 						}
 
@@ -101,6 +99,7 @@ namespace aubreypwd\theme;
 					}
 				}
 
+				/* Just the Header */
 				> header {
 
 					> nav {
@@ -113,18 +112,49 @@ namespace aubreypwd\theme;
 							border-bottom: 2px solid var(--color-electric-blue);
 						}
 					}
+
+					.profile {
+
+						border-top: 1px solid var(--color-semi-space);
+						border-bottom: 1px solid var(--color-jet);
+						display: flex;
+						align-items: center;
+						align-content: center;
+						justify-content: center;
+						padding: var(--padding-main-y) var(--padding-main-x);
+						gap: calc( var(--padding-main-x) / 2 );
+
+						img {
+							border-radius: 10px;
+						}
+
+						.information h1,
+						.information p {
+							padding: 0 0 0 var(--padding-main-y);
+						}
+
+						.information h1 {
+							font-size: 15px;
+							margin: 0;
+						}
+
+						.information p {
+							color: var(--color-white-ash);
+						}
+					}
 				}
 
+				/* Just the Footer */
 				> footer {
 
 					border-top: 1px solid var(--color-semi-space);
-					background-color: var(--color-jet);
 					position: relative;
 					z-index: 9;
 
 					> nav {
 
 						border-bottom: 1px solid var(--color-semi-space);
+						background-color: var(--color-jet);
 
 						li {
 							border-top: 2px solid transparent;
@@ -140,45 +170,36 @@ namespace aubreypwd\theme;
 						padding: var(--padding-main-y) var(--padding-main-x);
 						text-align: center;
 						color: var(--color-white-ash);
-						font-size: 12px;
-						background: var(--color-charchol);
 					}
 				}
 
-				&.home {
+				/* Only on the main blog page */
+				&.blog {
+
+					article {
+						border-bottom: 1px solid var(--color-jet);
+					}
+				}
+
+				&.single-post,
+				&.blog {
 
 					> header {
+
 						ul li:first-child {
 							border-bottom: 2px solid var(--color-electric-blue);
 						}
 					}
 				}
 
-				.profile {
-
-					border-top: 1px solid var(--color-semi-space);
-					border-bottom: 1px solid var(--color-jet);
-					display: flex;
-					align-items: center;
-					padding: var(--padding-main-y) var(--padding-main-x);
-
-					img {
-						border-radius: 10px;
-					}
-
-					p {
-						padding: 0 0 0 var(--padding-main-y);
-						color: var(--color-white-ash);
-						font-size: 13px;
-					}
-				}
-
 				main {
 
 					border-top: 1px solid var(--color-semi-space);
+					border-bottom: 1px solid var(--color-jet);
 					position: relative;
 
 					&::before {
+
 						background: linear-gradient(to bottom, rgba(26,26,26,1) 0%,rgba(0,0,0,0) 100%);
 						content: " ";
 						display: block;
@@ -195,12 +216,15 @@ namespace aubreypwd\theme;
 
 						position: relative;
 						z-index: 9;
-						padding-bottom: var(--padding-main-y);
 
+						/* Main Post & Pages */
 						article {
 
 							padding: var(--padding-main-y) var(--padding-main-x);
-							border-bottom: 1px solid var(--color-jet);
+
+							*:last-child {
+								margin-bottom: 0;
+							}
 
 							> header {
 
@@ -214,30 +238,42 @@ namespace aubreypwd\theme;
 									margin-top: 0;
 								}
 							}
+
+							> footer {
+								padding-top: var(--padding-main-y);
+							}
+
+							img,
+							picture {
+								max-width: 100%;
+								height: auto;
+								border-radius: 5px;
+							}
 						}
 
-						.more-posts {
-
-							padding: var(--padding-main-y) var(--padding-main-x);
-							font-weight: bold;
+						.date {
 							color: var(--color-white-ash);
-							border-top: 1px solid var(--color-semi-space);
-							/*border-bottom: 1px solid var(--color-jet);*/
-							/*background-color: var(--color-jet);*/
-							/*text-align: center;*/
 						}
 
 						.article-link {
 
-							display: block;
-							padding: calc( var(--padding-main-y) / 2 ) var(--padding-main-x);
-							/*border-bottom: 1px solid var(--color-jet);*/
-							/*border-top: 1px solid var(--color-semi-space);*/
+							display: flex;
+							justify-content: space-between;
+							align-items: center;
+							padding: calc( var(--padding-main-y) ) var(--padding-main-x);
+							border-top: 1px solid var(--color-semi-space);
+							border-bottom: 1px solid var(--color-jet);
+						}
+
+						.article-link:last-child {
+							border-bottom: none;
 						}
 					}
 				}
 			}
 		</style>
+
+		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" media="(min-width: 840px)">
 
 		<!-- Fetch gravatar early -->
 		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 93 ) ); ?>">
@@ -262,9 +298,10 @@ namespace aubreypwd\theme;
 
 				<img src="<?php echo esc_attr( my_gravatar( 93 ) ); ?>" alt="<?php esc_attr_e( 'Aubrey Portwood', 'aubreypwd' ); ?>">
 
-				<p>
-					<?php bloginfo( 'description' ); ?>
-				</p>
+				<div class="information">
+					<h1>Aubrey Portwood</h1>
+					<p><?php bloginfo( 'description' ); ?></p>
+				</div>
 			</div>
 		</header>
 
@@ -274,7 +311,6 @@ namespace aubreypwd\theme;
 				<?php if ( is_home() ) : ?>
 					<?php if ( have_posts() ) : ?>
 						<?php while ( have_posts() ) : the_post(); ?>
-
 							<?php if ( is_latest_post() ) : ?>
 
 								<article>
@@ -285,17 +321,38 @@ namespace aubreypwd\theme;
 									</header>
 
 									<?php the_content(); ?>
+
+									<footer>
+										<p class="date">
+											<?php the_date(); ?>
+										</p>
+									</footer>
 								</article>
 
-								<div class="more-posts"><?php echo __( 'Recent Posts', 'aubreypwd' ); ?></div>
-
 							<?php else : ?>
-								<a href="<?php the_permalink(); ?>" class="article-link"><?php the_title(); ?></a>
+								<div class="article-link">
+									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									<span class="date"><?php the_date(); ?></span>
+								</div>
 							<?php endif; ?>
 						<?php endwhile; ?>
 					<?php endif; ?>
 				<?php else : ?>
-					Single
+					<article>
+						<header>
+							<a href="<?php the_permalink(); ?>">
+								<h1><?php the_title(); ?></h1>
+							</a>
+						</header>
+
+						<?php the_content(); ?>
+
+						<footer>
+							<p class="date">
+								<?php echo get_the_date(); ?>
+							</p>
+						</footer>
+					</article>
 				<?php endif; ?>
 			</div>
 
@@ -314,7 +371,7 @@ namespace aubreypwd\theme;
 			?>
 
 			<div class="copyright">
-				<?php esc_html_e( 'Copyright 2025 &mdash; Aubrey Portwood', 'aubreypwd' ); ?>
+				<small><?php esc_html_e( 'Copyright 2025 &mdash; Aubrey Portwood', 'aubreypwd' ); ?></small>
 			</div>
 		</footer>
 	</body>
