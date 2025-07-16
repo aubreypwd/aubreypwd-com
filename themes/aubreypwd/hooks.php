@@ -139,7 +139,7 @@ add_filter( 'wp_robots', function( $robots ) {
 	return $robots;
 } );
 
-// Async and defer scripts.
+// async and defer scripts.
 add_action( 'script_loader_tag', function( $tag, $handle ) {
 
 	$defer = [
@@ -162,3 +162,66 @@ add_action( 'script_loader_tag', function( $tag, $handle ) {
 }, 10, 2 );
 
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
+
+// Convert images on the fly to webp and reduce image size automatically.
+add_filter( 'the_content', function( $content ) {
+
+	$transient_key = 'aubreypwd_imagekit_200';
+
+	if ( 'failed' === get_transient( $transient_key ) ) {
+		return $content; // A previous attempt failed, assume it's still down until the transient expires.
+	}
+
+	// I have this on my server, it should proxy it and 200 OK.
+	$headers = @get_headers( 'https://ik.imagekit.io/aubreypwd/pixel.png' );
+
+	if ( false === $headers || ! strstr( ( $headers[0] ?? '' ), '200' ) ) {
+
+		// Don't trust imagekit for 5 minutes and try again.
+		set_transient( $transient_key, 'failed', 60 * 5 );
+
+		return $content; // Imagekit isn't responding, use my own images on my server.
+	}
+
+	delete_transient( $transient_key ); // Make sure previous failures are removed, we got a 200.
+
+	// Whatever host this site is running on.
+	$host = preg_quote( $_SERVER['HTTP_HOST'], '#' );
+
+	// Image replacement: add transformations: webp, 70 quality, and max width 1024 (my theme will never be wider than that).
+	$content = preg_replace(
+		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|gif|svg|bmp|ico|tiff|avif|webp))#i', $host ),
+		"https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/$1",
+		$content
+	);
+
+	// Video replacement, no transformations.
+	$content = preg_replace(
+		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(mp4|webm|mov))#i', $host ),
+		"https://ik.imagekit.io/aubreypwd/$1",
+		$content
+	);
+
+	return $content;
+} );
+
+// Allow WYSIWYG to insert video using <video>.
+add_filter( 'media_send_to_editor', function( $html, $id, $attachment ) {
+
+	$mime = get_post_mime_type( $id );
+
+	// Check if it's a video
+	if ( strpos( $mime, 'video/' ) === 0 ) {
+
+		$src = wp_get_attachment_url( $id );
+
+		// Output <video> tag
+		$html = sprintf(
+			'<video controls preload="metadata" src="%s" decoding="async" playsinline muted>',
+			esc_url( $src )
+		);
+	}
+
+	return $html;
+
+}, 10, 3 );

@@ -3,13 +3,21 @@
 <html <?php language_attributes(); ?>>
 
 	<head>
+
+		<link rel="preconnect" href="<?php echo esc_attr( my_gravatar( 122 ) ); ?>">
+		<link rel="preconnect" href="https://ik.imagekit.io">
+
 		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
 
+		<!-- Meta -->
 		<meta name="description" content="<?php bloginfo( 'description' ); ?>">
 		<meta name="author" content="Aubrey Portwood">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 
+		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 122 ) ); ?>">
+
+		<!-- Critical & Mobile CSS -->
 		<style>
 
 			/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
@@ -43,7 +51,7 @@
 				color: var(--color-white);
 				font-family: Arial, sans-serif;
 				font-size: 13px;
-				line-height: 20px;
+				line-height: 24px;
 
 				a:link {
 					color: var(--color-electric-blue);
@@ -128,6 +136,8 @@
 
 							border-radius: 10px;
 							border: 1px solid var(--color-black);
+							min-height: 122px;
+							min-width: 122px;
 						}
 
 						.information h1,
@@ -139,6 +149,10 @@
 
 							font-size: 15px;
 							margin: 0;
+
+							> span {
+								color: var(--color-white-ash);
+							}
 						}
 
 						.information p {
@@ -278,7 +292,6 @@
 						position: relative;
 						z-index: 9;
 						font-size: 15px;
-						line-height: 22px;
 						font-weight: 300;
 						letter-spacing: 0;
 
@@ -302,9 +315,11 @@
 							/* Youtube Embeds */
 							& > iframe[src*="https://www.youtube"],
 							& > * > iframe[src*="https://www.youtube"] {
+
 								width: 100% !important;
 								min-width: 100% !important;
 								height: 450px;
+								border-radius: 10px;
 							}
 
 							/* Post Headers */
@@ -315,7 +330,7 @@
 							h5,
 							h6 {
 
-								margin-block-start: calc( var(--padding-critical-y) * 2 );
+								margin-block-start: calc( var(--padding-critical-y) * 2.5 );
 								padding-bottom: var(--padding-critical-y);
 							}
 
@@ -331,6 +346,14 @@
 							h5,
 							h6 {
 								padding-bottom: calc( var(--padding-critical-y) / 2 );
+							}
+
+							strong {
+								font-weight: bold;
+							}
+
+							em {
+								font-style: italic;
 							}
 
 							/* Don't add margin to the first element */
@@ -386,7 +409,8 @@
 							/* Media */
 							img,
 							picture,
-							figure {
+							figure,
+							video {
 
 								max-width: 100%;
 								height: auto;
@@ -410,6 +434,15 @@
 							}
 						}
 
+						video {
+
+							display: block;
+							min-width: 100%;
+							min-height: 500px;
+							background: var(--color-black);
+							border-radius: 10px !important;
+						}
+
 					 	pre {
 							max-width: 100%;
 							overflow: scroll;
@@ -421,7 +454,7 @@
 						blockquote {
 
 							border-left: 1px solid var(--color-electric-blue);
-							margin-left: var(--padding-critical-x);
+							margin: calc( var(--padding-critical-x) * 2 ) 0 calc( var(--padding-critical-x) * 2 ) var(--padding-critical-x);
 							padding-left: var(--padding-critical-x);
 							font-style: italic;
 
@@ -456,22 +489,34 @@
 					}
 				}
 			}
+
+			/* Desktop Shifts */
+			@media (min-width: 900px) {
+				html {
+
+					body {
+
+						margin: 34px auto;
+						max-width: 850px;
+					}
+				}
+			}
 		</style>
 
+		<!-- Non-critical CSS -->
+		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)" fetchpriority="low">
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'mid.css' ); ?>" media="(min-width: 600px)">
-		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)">
 
-		<!-- Fetch Gravatar Early -->
-		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 120 ) ); ?>">
+		<link rel="icon" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'favicon.ico' ); ?>" type="image/x-icon" fetchpriority="low">
 
 		<!-- All the shit WordPress puts on the page -->
 		<?php wp_head(); ?>
 
-		<link rel="icon" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'favicon.ico' ); ?>" type="image/x-icon">
 	</head>
 
 	<body <?php body_class(); ?>>
-		<header>
+
+		<header role="banner">
 
 			<?php
 
@@ -487,17 +532,20 @@
 			<div class="profile">
 
 				<!-- Gravatar, should be preloaded -->
-				<img src="<?php echo esc_attr( my_gravatar( 120 ) ); ?>" alt="<?php esc_attr_e( 'Aubrey Portwood', 'aubreypwd' ); ?>">
+				<img src="<?php echo esc_attr( my_gravatar( 122 ) ); ?>"
+					alt="<?php echo esc_attr__( 'Aubrey Portwood', 'aubreypwd' ); ?>"
+					fetchpriority="high"
+					referrerpolicy="no-referrer">
 
 				<div class="information">
-
-					<h1>Aubrey Portwood</h1>
+					<h1>Aubrey Portwood <span>&mdash; <?php bloginfo( 'name' ); ?></span></h1>
 					<p><?php bloginfo( 'description' ); ?></p>
 				</div>
 			</div>
+
 		</header>
 
-		<main>
+		<main role="main" aria-label="<?php echo esc_attr__( 'Main content', 'aubreypwd' ); ?>">
 			<div class="content">
 
 				<?php if ( is_home() ) : // Blog page. ?>
@@ -527,7 +575,7 @@
 							<!-- Show the other posts as links to their single page -->
 							<?php else : ?>
 								<div class="article-link">
-									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+									<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
 									<span class="date"><?php the_date(); ?></span>
 								</div>
 							<?php endif; ?>
@@ -573,7 +621,7 @@
 			?>
 
 			<div class="copyright">
-				<?php esc_html_e( 'Copyright 2025 &mdash; Aubrey Portwood', 'aubreypwd' ); ?>
+				<?php esc_html_e( 'Copyright &copy; 2025 &nbsp; Aubrey Portwood', 'aubreypwd' ); ?>
 			</div>
 		</footer>
 	</body>

@@ -26,5 +26,10 @@ function is_latest_post() {
 }
 
 function my_gravatar( int $size = 150 ) {
-	return "https://0.gravatar.com/avatar/09601923fd59a7433892711376c37e41/?s={$size}&d=identicon&r=g&f=webp";
+
+	return str_replace(
+		'://aubreypwd.com/wp-content/uploads/',
+		"://ik.imagekit.io/aubreypwd/tr:f-webp,q-100/,w-{$size},h-{$size}",
+		'https://aubreypwd.com/wp-content/uploads/2025/04/Computer-Lab-Cropped.jpg'
+	);
 }
