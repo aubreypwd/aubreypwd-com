@@ -166,55 +166,66 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 // Convert images on the fly to webp and reduce image size automatically.
 add_filter( 'the_content', function( $content ) {
 
-	if ( isset( $_GET['skip_convert' ] ) ) {
-		return $content;
-	}
-
-	$transient_key = 'aubreypwd/theme/imagekit/200';
-
-	if ( 'failed' === get_transient( $transient_key ) ) {
-		return $content; // A previous attempt failed, assume it's still down until the transient expires.
-	}
-
-	// I have this on my server, it should proxy it and 200 OK.
-	$headers = @get_headers( 'https://ik.imagekit.io/aubreypwd/pixel.png' );
-
-	if ( false === $headers || ! strstr( ( $headers[0] ?? '' ), '200' ) ) {
-
-		// Don't trust imagekit for 5 minutes and try again.
-		set_transient( $transient_key, 'failed', 60 * 5 );
-
-		return $content; // Imagekit isn't responding, use my own images on my server.
-	}
-
-	delete_transient( $transient_key ); // Make sure previous failures are removed, we got a 200.
-
-	// Bump the rev whenever I want.
-	if ( isset( $_GET['bump_imagekit_rev'] ) ) {
-		update_option( 'aubreypwd/theme/imagekit/rev', time() );
-	}
-
-	// Get a revision number from the DB.
-	$rev = get_option( 'aubreypwd/theme/imagekit/rev', 0 );
+	$converted_content = $content;
 
 	// Whatever host this site is running on.
 	$host = preg_quote( $_SERVER['HTTP_HOST'], '#' );
 
 	// Image replacement: add transformations: webp, 70 quality, and max width 1024 (my theme will never be wider than that).
-	$content = preg_replace(
+	$converted_content = preg_replace(
 		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|bmp|webp))#i', $host ),
-		add_query_arg( 'rev', $rev, 'https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/wp-content/uploads/$1' ),
-		$content
+		'https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/wp-content/uploads/$1',
+		$converted_content
 	);
 
 	// Video replacement, no transformations.
-	$content = preg_replace(
+	$converted_content = preg_replace(
 		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(mp4|webm|mov))#i', $host ),
-		add_query_arg( 'rev', $rev, 'https://ik.imagekit.io/aubreypwd/wp-content/uploads/$1' ),
-		$content
+		'https://ik.imagekit.io/aubreypwd/wp-content/uploads/$1',
+		$converted_content
 	);
 
-	return $content;
+	$transient = 'aubreypwd/theme/imagekit/network_check';
+
+	if ( isset( $_GET['reset_imagekit_check'] ) ) {
+		delete_transient( $transient ); // Reset the transient to re-test.
+	}
+
+	$check = get_transient( $transient );
+
+	if ( 'failed' === $check ) {
+
+		// It recently failed, use our normal content until transient expires.
+		return $content;
+
+	} elseif ( 'succeeded' === $check ) {
+
+		// Trust the converted content until the transient expires.
+		return $converted_content;
+
+	// We don't know if it failed or not, let's test.
+	} else {
+
+		// I have this on my server, it should proxy it and 200 OK.
+		$headers = @get_headers( 'https://ik.imagekit.io/aubreypwd/pixel.png' );
+
+		// We got a 200 OK.
+		if ( strpos( ( $headers[0] ?? '' ), '200' ) ) {
+
+			// Remember this success for an hour.
+			set_transient( $transient, 'succeeded', HOUR_IN_SECONDS );
+
+			// Use converted content since we can trust the source.
+			return $converted_content;
+
+		} else {
+
+			// We can't trust the source, so don't trust it for 10 minutes.
+			set_transient( $transient, 'failed', MINUTE_IN_SECONDS * 10 );
+		}
+	}
+
+	return $content; // Default to our content.
 } );
 
 // Allow WYSIWYG to insert video using <video>.
