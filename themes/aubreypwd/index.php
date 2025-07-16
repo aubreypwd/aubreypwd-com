@@ -350,8 +350,9 @@
 							}
 
 							hr {
+
 								height: 1px;
-								border: 1px solid var(--color-jet);
+								border: 0.5px solid var(--color-jet);
 								padding: var(--padding-critical-y) * 2;
 							}
 
