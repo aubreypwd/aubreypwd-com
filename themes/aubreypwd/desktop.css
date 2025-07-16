@@ -19,9 +19,15 @@ html {
 
 			padding: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) ) calc( var(--padding-main-x) * var( --desktop-padding-multiplier ) );
 
-			p {
-				font-size: 16px;
-				padding: 0 0 0 calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) );
+			.information {
+
+				h1 {
+					font-size: 24px;
+				}
+
+				p {
+					font-size: 18px;
+				}
 			}
 		}
 

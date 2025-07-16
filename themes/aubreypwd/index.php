@@ -143,7 +143,10 @@
 						}
 
 						.information p {
+
 							color: var(--color-white-ash);
+							font-size: 15px;
+							margin-bottom: 0;
 						}
 					}
 				}
@@ -387,7 +390,7 @@
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'desktop.css' ); ?>" media="(min-width: 900px)">
 
 		<!-- Fetch Gravatar Early -->
-		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 93 ) ); ?>">
+		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 120 ) ); ?>">
 
 		<!-- All the shit WordPress puts on the page -->
 		<?php wp_head(); ?>
@@ -410,7 +413,7 @@
 			<div class="profile">
 
 				<!-- Gravatar, should be preloaded -->
-				<img src="<?php echo esc_attr( my_gravatar( 93 ) ); ?>" alt="<?php esc_attr_e( 'Aubrey Portwood', 'aubreypwd' ); ?>">
+				<img src="<?php echo esc_attr( my_gravatar( 120 ) ); ?>" alt="<?php esc_attr_e( 'Aubrey Portwood', 'aubreypwd' ); ?>">
 
 				<div class="information">
 
