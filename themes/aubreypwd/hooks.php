@@ -252,3 +252,6 @@ add_filter( 'media_send_to_editor', function( $html, $id, $attachment ) {
 	return $html;
 
 }, 10, 3 );
+
+// Add RSS to the theme.
+add_theme_support( 'automatic-feed-links' );
