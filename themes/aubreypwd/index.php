@@ -1,6 +1,39 @@
-<?php namespace aubreypwd\theme; ?>
-<!DOCTYPE html>
+<?php namespace aubreypwd\theme; ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
+	<!--
+
+	I’ve spent years wanting to build this blog. Not a side project. Not a vibe
+	coded one. A blog. Just a blog. Something that did one thing well—and fast.
+
+	For six or seven years, I waited. Jobs took my time. Complexity crept into
+	everything. When I finally stepped away from my job in in April, I decided
+	it was time.
+
+	This isn’t a theme built with a toolkit, framework, or AI. It’s not loaded with
+	features I didn't asked for. There’s no build pipeline, no design system. No
+	distraction. Just raw intent, expression, and code I wrote myself.
+
+	Seven files.
+	A few hundred lines of code.
+	Two days.
+
+	That’s all it took.
+
+	Because WordPress themes don’t have to be bloated shit shows. Because
+	performance isn’t found in endless plugins or React frontends.
+	Because we’ve drifted too far from the fundamentals.
+
+	This is an experiment of getting back to those fundementals.
+	This site is my rebellion.
+	It’s a statement: simplicity still wins.
+
+	This is the fastest, leanest WordPress blog I’ve ever wanted.
+	And I’m proud of it.
+
+		June 16th 2025
+
+	-->
 
 	<head>
 
@@ -434,6 +467,12 @@
 							}
 						}
 
+						figure {
+							img {
+								margin-bottom: calc( var(--padding-critical-y) / 2 );
+							}
+						}
+
 						video {
 
 							display: block;
@@ -548,7 +587,8 @@
 		<main role="main" aria-label="<?php echo esc_attr__( 'Main content', 'aubreypwd' ); ?>">
 			<div class="content">
 
-				<?php if ( is_home() ) : // Blog page. ?>
+				<!-- Blog page -->
+				<?php if ( is_home() ) : ?>
 
 					<?php if ( have_posts() ) : ?>
 						<?php while ( have_posts() ) : the_post(); ?>
@@ -609,6 +649,7 @@
 		</main>
 
 		<footer>
+
 			<?php
 
 			wp_nav_menu(
@@ -626,5 +667,6 @@
 		</footer>
 	</body>
 
+	<!-- All the shit WordPress puts in the footer -->
 	<?php wp_footer(); ?>
 </html>

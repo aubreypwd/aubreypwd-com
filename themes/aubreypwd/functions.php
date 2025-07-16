@@ -2,8 +2,7 @@
 
 namespace aubreypwd\theme;
 
-require_once 'hooks.php';
-
+// Is the current post the latest post?
 function is_latest_post() {
 
 	if ( ! in_the_loop() || ! is_main_query() ) {
@@ -25,11 +24,15 @@ function is_latest_post() {
 	return ( $latest_post[0] ?? 0 ) === $post->ID;
 }
 
+// My gravatar.
 function my_gravatar( int $size = 150 ) {
 
+	// Yes, serve it up via imagekit so we get super small version.
 	return str_replace(
 		'://aubreypwd.com/wp-content/uploads/',
 		"://ik.imagekit.io/aubreypwd/tr:f-webp,q-100/,w-{$size},h-{$size}",
 		'https://aubreypwd.com/wp-content/uploads/2025/04/Computer-Lab-Cropped.jpg'
 	);
 }
+
+require_once 'hooks.php';

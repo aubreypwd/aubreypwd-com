@@ -16,6 +16,7 @@ add_action( 'init', function() {
 	);
 } );
 
+// Init.
 add_action( 'init', function() {
 
 	// Disable emoji stuff in the <head>
@@ -131,7 +132,7 @@ add_action( 'admin_init', function() {
 
 } );
 
-// Disable some robot meta.
+// Disable some robot meta shit I don't need.
 add_filter( 'wp_robots', function( $robots ) {
 
 	unset( $robots['max-image-preview'] );
@@ -143,9 +144,11 @@ add_filter( 'wp_robots', function( $robots ) {
 add_action( 'script_loader_tag', function( $tag, $handle ) {
 
 	$defer = [
+		// None right now.
 	];
 
 	$async = [
+		// None right now.
 	];
 
 	// Add defer to scripts.
@@ -161,9 +164,10 @@ add_action( 'script_loader_tag', function( $tag, $handle ) {
 	return $tag;
 }, 10, 2 );
 
+// Remove emoji bullshit.
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-// Convert images on the fly to webp and reduce image size automatically.
+// Convert images on the fly to webp and reduce image size with imagekit.io.
 add_filter( 'the_content', function( $content ) {
 
 	$converted_content = $content;
@@ -174,7 +178,7 @@ add_filter( 'the_content', function( $content ) {
 	// Image replacement: add transformations: webp, 70 quality, and max width 1024 (my theme will never be wider than that).
 	$converted_content = preg_replace(
 		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|bmp|webp))#i', $host ),
-		'https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/wp-content/uploads/$1',
+		'https://ik.imagekit.io/aubreypwd/tr:f-web,q-71,w-1024/wp-content/uploads/$1',
 		$converted_content
 	);
 
@@ -228,7 +232,7 @@ add_filter( 'the_content', function( $content ) {
 	return $content; // Default to our content.
 } );
 
-// Allow WYSIWYG to insert video using <video>.
+// Allow WYSIWYG to insert video using normal <video> so I don't have to use a bloated plugin.
 add_filter( 'media_send_to_editor', function( $html, $id, $attachment ) {
 
 	$mime = get_post_mime_type( $id );

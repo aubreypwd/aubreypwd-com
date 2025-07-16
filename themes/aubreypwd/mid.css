@@ -8,6 +8,7 @@ html {
 
 	body {
 
+		/* All posts page */
 		&.page-id-243 {
 
 			main {
@@ -32,6 +33,7 @@ html {
 			}
 		}
 
+		/* Profile */
 		.profile {
 
 			padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
@@ -61,10 +63,11 @@ html {
 			}
 		}
 
+		/* Main Content */
 		main {
-
 			.content {
 
+				/* Posts */
 				article {
 
 					padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
