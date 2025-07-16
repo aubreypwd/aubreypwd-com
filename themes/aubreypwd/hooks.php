@@ -166,7 +166,11 @@ remove_action( 'wp_print_styles', 'print_emoji_styles' );
 // Convert images on the fly to webp and reduce image size automatically.
 add_filter( 'the_content', function( $content ) {
 
-	$transient_key = 'aubreypwd_imagekit_200';
+	if ( isset( $_GET['skip_convert' ] ) ) {
+		return $content;
+	}
+
+	$transient_key = 'aubreypwd/theme/imagekit/200';
 
 	if ( 'failed' === get_transient( $transient_key ) ) {
 		return $content; // A previous attempt failed, assume it's still down until the transient expires.
@@ -185,20 +189,28 @@ add_filter( 'the_content', function( $content ) {
 
 	delete_transient( $transient_key ); // Make sure previous failures are removed, we got a 200.
 
+	// Bump the rev whenever I want.
+	if ( isset( $_GET['bump_imagekit_rev'] ) ) {
+		update_option( 'aubreypwd/theme/imagekit/rev', time() );
+	}
+
+	// Get a revision number from the DB.
+	$rev = get_option( 'aubreypwd/theme/imagekit/rev', 0 );
+
 	// Whatever host this site is running on.
 	$host = preg_quote( $_SERVER['HTTP_HOST'], '#' );
 
 	// Image replacement: add transformations: webp, 70 quality, and max width 1024 (my theme will never be wider than that).
 	$content = preg_replace(
-		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|gif|svg|bmp|ico|tiff|avif|webp))#i', $host ),
-		"https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/$1",
+		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|bmp|webp))#i', $host ),
+		add_query_arg( 'rev', $rev, 'https://ik.imagekit.io/aubreypwd/tr:f-web,q-70,w-1024/wp-content/uploads/$1' ),
 		$content
 	);
 
 	// Video replacement, no transformations.
 	$content = preg_replace(
 		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(mp4|webm|mov))#i', $host ),
-		"https://ik.imagekit.io/aubreypwd/$1",
+		add_query_arg( 'rev', $rev, 'https://ik.imagekit.io/aubreypwd/wp-content/uploads/$1' ),
 		$content
 	);
 
