@@ -512,7 +512,7 @@
 							display: flex;
 							justify-content: space-between;
 							align-items: center;
-							padding: calc( var(--padding-critical-y) ) var(--padding-critical-x);
+							padding: calc( var(--padding-critical-y) / 2 ) var(--padding-critical-x);
 							border-top: 1px solid var(--color-semi-space);
 							border-bottom: 1px solid var(--color-jet);
 

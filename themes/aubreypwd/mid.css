@@ -104,20 +104,8 @@ html {
 					}
 				}
 
-				.more-posts,
 				.article-link {
-
-					padding-left: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) );
-					padding-right: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) );
-				}
-
-				.more-posts {
-
-					padding-top: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) );
-					padding-bottom: calc( var(--padding-critical-y) * 2 );
-					font-size: 24px;
-					color: var(--color-white);
-
+					padding: var(--padding-critical-y ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 				}
 			}
 		}
