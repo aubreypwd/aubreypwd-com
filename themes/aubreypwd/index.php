@@ -12,8 +12,6 @@
 
 		<style>
 
-			/* Critcal & Mobile CSS */
-
 			/*! modern-normalize v3.0.1 | MIT License | https://github.com/sindresorhus/modern-normalize */
 			progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-box}html{font-family:system-ui,'Segoe UI',Roboto,Helvetica,Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji';line-height:1.15;-webkit-text-size-adjust:100%;tab-size:4}body{margin:0}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Consolas,'Liberation Mono',Menlo,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}table{border-color:currentcolor}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}legend{padding:0}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}
 
@@ -31,8 +29,8 @@
 				--color-semi-space: #131313;
 
 				/* Spacing */
-				--padding-main-x: 15px;
-				--padding-main-y: 15px;
+				--padding-critical-x: 15px;
+				--padding-critical-y: 15px;
 			}
 
 			html {
@@ -79,11 +77,11 @@
 							padding: 0;
 							margin: 0;
 							justify-content: center;
-							gap: calc( var(--padding-main-x) / 2 );
+							gap: calc( var(--padding-critical-x) / 2 );
 
 							li {
 
-								padding: var(--padding-main-y) var(--padding-main-x);
+								padding: var(--padding-critical-y) var(--padding-critical-x);
 								border-top: 2px solid transparent;
 								border-bottom: 2px solid transparent;
 
@@ -123,8 +121,8 @@
 						align-items: center;
 						align-content: center;
 						justify-content: center;
-						padding: calc( var(--padding-main-y) * 1.5 ) var(--padding-main-x);
-						gap: calc( var(--padding-main-x) / 2 );
+						padding: calc( var(--padding-critical-y) * 1.5 ) var(--padding-critical-x);
+						gap: calc( var(--padding-critical-x) / 2 );
 
 						img {
 
@@ -134,7 +132,7 @@
 
 						.information h1,
 						.information p {
-							padding: 0 0 0 var(--padding-main-y);
+							padding: 0 0 0 var(--padding-critical-y);
 						}
 
 						.information h1 {
@@ -177,7 +175,7 @@
 					/* Copyright */
 					.copyright {
 
-						padding: var(--padding-main-y) var(--padding-main-x);
+						padding: var(--padding-critical-y) var(--padding-critical-x);
 						text-align: center;
 						color: var(--color-white-ash);
 					}
@@ -200,6 +198,54 @@
 
 						ul li:first-child {
 							border-bottom: 2px solid var(--color-electric-blue);
+						}
+					}
+				}
+
+				/* All Posts Page */
+				&.page-id-243 {
+
+					main {
+
+						> .content {
+
+							article {
+
+								padding: 0;
+
+								header {
+
+									padding: var(--padding-critical-y) var(--padding-critical-x);
+									border-bottom: 1px solid var(--color-jet);
+
+
+									h1 {
+										margin-bottom: 0;
+									}
+								}
+
+								ul {
+
+									list-style-type: none;
+									padding: 0;
+									margin: 0;
+
+									li {
+
+										padding: calc( var(--padding-critical-y) / 2 ) var(--padding-critical-x);
+										border-top: 1px solid var(--color-semi-space);
+										border-bottom: 1px solid var(--color-jet);
+										justify-content: space-between;
+										align-items: center;
+										display: flex;
+
+										.date {
+											text-align: right;
+											min-width: 40%;
+										}
+									}
+								}
+							}
 						}
 					}
 				}
@@ -239,7 +285,15 @@
 						/* Main Post & Pages */
 						article {
 
-							padding: var(--padding-main-y) var(--padding-main-x);
+							padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-x);
+
+							/* Old-fashioned for floats */
+							&:after {
+
+								content: " ";
+								clear: both;
+								display: block;
+							}
 
 							& > * {
 								max-width: 100%;
@@ -261,8 +315,8 @@
 							h5,
 							h6 {
 
-								margin-block-start: calc( var(--padding-main-y) * 2 );
-								padding-bottom: var(--padding-main-y);
+								margin-block-start: calc( var(--padding-critical-y) * 2 );
+								padding-bottom: var(--padding-critical-y);
 							}
 
 							/* Bigger headers */
@@ -276,7 +330,7 @@
 							h4,
 							h5,
 							h6 {
-								padding-bottom: calc( var(--padding-main-y) / 2 );
+								padding-bottom: calc( var(--padding-critical-y) / 2 );
 							}
 
 							/* Don't add margin to the first element */
@@ -298,7 +352,7 @@
 							hr {
 								height: 1px;
 								border: 1px solid var(--color-jet);
-								padding: var(--padding-main-y) * 2;
+								padding: var(--padding-critical-y) * 2;
 							}
 
 							/* Blog Post Headers */
@@ -314,14 +368,14 @@
 									margin-top: 0;
 									font-size: 26px;
 									line-height: 32px;
-									margin-bottom: calc( var(--padding-main-y) * 2 );
+									margin-bottom: calc( var(--padding-critical-y) * 2 );
 								}
 							}
 
 							/* Blog Post Footer */
 							> footer {
 
-								margin-top: calc( var(--padding-main-y) * 3 );
+								margin-top: calc( var(--padding-critical-y) * 3 );
 
 								& > *:last-child {
 									margin-bottom: 0;
@@ -336,7 +390,7 @@
 								max-width: 100%;
 								height: auto;
 								border-radius: 5px;
-								margin: calc( var(--padding-main-y) * 2 ) auto;
+								margin: calc( var(--padding-critical-y) * 2 ) auto;
 
 								&.aligncenter,
 								&.alignright,
@@ -358,7 +412,7 @@
 					 	pre {
 							max-width: 100%;
 							overflow: scroll;
-							padding: var(--padding-main-y);
+							padding: var(--padding-critical-y);
 							background-color: var(--color-jet);
 							border-radius: 5px;
 						}
@@ -366,8 +420,8 @@
 						blockquote {
 
 							border-left: 1px solid var(--color-electric-blue);
-							margin-left: var(--padding-main-x);
-							padding-left: var(--padding-main-x);
+							margin-left: var(--padding-critical-x);
+							padding-left: var(--padding-critical-x);
 							font-style: italic;
 
 							*:last-child {
@@ -385,9 +439,14 @@
 							display: flex;
 							justify-content: space-between;
 							align-items: center;
-							padding: calc( var(--padding-main-y) ) var(--padding-main-x);
+							padding: calc( var(--padding-critical-y) ) var(--padding-critical-x);
 							border-top: 1px solid var(--color-semi-space);
 							border-bottom: 1px solid var(--color-jet);
+
+							.date {
+								text-align: right;
+								min-width: 40%;
+							}
 						}
 
 						.article-link:last-child {
@@ -406,6 +465,8 @@
 
 		<!-- All the shit WordPress puts on the page -->
 		<?php wp_head(); ?>
+
+		<link rel="icon" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'favicon.ico' ); ?>" type="image/x-icon">
 	</head>
 
 	<body <?php body_class(); ?>>
