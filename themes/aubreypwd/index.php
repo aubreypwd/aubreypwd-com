@@ -72,16 +72,17 @@
 							display: none;
 						}
 
-						ul {
+						> ul {
 
 							display: flex;
 							list-style: none;
 							padding: 0;
 							margin: 0;
+							justify-content: center;
+							gap: calc( var(--padding-main-x) / 2 );
 
 							li {
 
-								margin: 0 var(--padding-main-y) 0 0;
 								padding: var(--padding-main-y) var(--padding-main-x);
 								border-top: 2px solid transparent;
 								border-bottom: 2px solid transparent;
@@ -122,7 +123,7 @@
 						align-items: center;
 						align-content: center;
 						justify-content: center;
-						padding: var(--padding-main-y) var(--padding-main-x);
+						padding: calc( var(--padding-main-y) * 1.5 ) var(--padding-main-x);
 						gap: calc( var(--padding-main-x) / 2 );
 
 						img {
@@ -145,7 +146,7 @@
 						.information p {
 
 							color: var(--color-white-ash);
-							font-size: 15px;
+							font-size: 13px;
 							margin-bottom: 0;
 						}
 					}
@@ -311,7 +312,7 @@
 
 								h1 {
 									margin-top: 0;
-									font-size: 22px;
+									font-size: 26px;
 									line-height: 32px;
 									margin-bottom: calc( var(--padding-main-y) * 2 );
 								}
@@ -319,6 +320,8 @@
 
 							/* Blog Post Footer */
 							> footer {
+
+								margin-top: calc( var(--padding-main-y) * 3 );
 
 								& > *:last-child {
 									margin-bottom: 0;
@@ -350,6 +353,14 @@
 									font-size: 14px;
 								}
 							}
+						}
+
+					 	pre {
+							max-width: 100%;
+							overflow: scroll;
+							padding: var(--padding-main-y);
+							background-color: var(--color-jet);
+							border-radius: 5px;
 						}
 
 						blockquote {
@@ -387,7 +398,8 @@
 			}
 		</style>
 
-		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'desktop.css' ); ?>" media="(min-width: 900px)">
+		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'mid.css' ); ?>" media="(min-width: 600px)">
+		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)">
 
 		<!-- Fetch Gravatar Early -->
 		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 120 ) ); ?>">

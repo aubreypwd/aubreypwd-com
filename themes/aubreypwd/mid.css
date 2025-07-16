@@ -1,7 +1,7 @@
 /* Non-critical & Desktop CSS */
 
 :root {
-	--desktop-padding-multiplier: 2.5;
+	--mid-padding-multiplier: 2.5;
 }
 
 html {
@@ -10,14 +10,9 @@ html {
 
 	body {
 
-		margin: 34px auto;
-		border-radius: 10px;
-		border: 1px solid var(--color-black);
-		width: 850px;
-
 		.profile {
 
-			padding: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) ) calc( var(--padding-main-x) * var( --desktop-padding-multiplier ) );
+			padding: calc( var(--padding-main-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-main-x) * var( --mid-padding-multiplier ) );
 
 			.information {
 
@@ -33,9 +28,13 @@ html {
 
 		> header,
 		> footer {
+
 			nav {
+
 				> ul {
-					padding: 0 calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) );
+
+					padding: 0 calc( var(--padding-main-y) * var( --mid-padding-multiplier ) );
+					justify-content: left;
 				}
 			}
 		}
@@ -46,7 +45,7 @@ html {
 
 				article {
 
-					padding: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) ) calc( var(--padding-main-x) * var( --desktop-padding-multiplier ) );
+					padding: calc( var(--padding-main-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-main-x) * var( --mid-padding-multiplier ) );
 
 					> header {
 						h1 {
@@ -83,13 +82,13 @@ html {
 				.more-posts,
 				.article-link {
 
-					padding-left: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) );
-					padding-right: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) );
+					padding-left: calc( var(--padding-main-y) * var( --mid-padding-multiplier ) );
+					padding-right: calc( var(--padding-main-y) * var( --mid-padding-multiplier ) );
 				}
 
 				.more-posts {
 
-					padding-top: calc( var(--padding-main-y) * var( --desktop-padding-multiplier ) );
+					padding-top: calc( var(--padding-main-y) * var( --mid-padding-multiplier ) );
 					padding-bottom: calc( var(--padding-main-y) * 2 );
 					font-size: 24px;
 					color: var(--color-white);
