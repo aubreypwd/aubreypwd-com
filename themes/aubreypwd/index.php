@@ -176,6 +176,7 @@
 						.information h1,
 						.information p {
 							padding: 0 0 0 var(--padding-critical-y);
+							margin: 0;
 						}
 
 						.information h1 {
@@ -185,6 +186,7 @@
 
 							> span {
 								color: var(--color-white-ash);
+								display: none;
 							}
 						}
 
