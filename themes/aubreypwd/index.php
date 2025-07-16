@@ -1,16 +1,14 @@
-<?php
-
-namespace aubreypwd\theme;
-
-?>
+<?php namespace aubreypwd\theme; ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
 	<head>
-		<title><?php bloginfo( 'name' ); ?></title>
+		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
 
+		<meta name="description" content="<?php bloginfo( 'description' ); ?>">
+		<meta name="author" content="Aubrey Portwood">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
-		<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 		<style>
 
@@ -46,7 +44,7 @@ namespace aubreypwd\theme;
 				background-color: var(--color-charchol);
 				color: var(--color-white);
 				font-family: Arial, sans-serif;
-				font-size: 14px;
+				font-size: 13px;
 				line-height: 20px;
 
 				a:link {
@@ -61,13 +59,14 @@ namespace aubreypwd\theme;
 				> header,
 				> footer {
 
+					/* All Navigations */
 					> nav {
 
 						white-space: nowrap;
 						overflow: auto;
 						scrollbar-width: none;
-						-ms-scroll-style: none;
 						border-bottom: 1px solid var(--color-jet);
+						-ms-scroll-style: none;
 
 						&::-webkit-scrollbar {
 							display: none;
@@ -102,6 +101,7 @@ namespace aubreypwd\theme;
 				/* Just the Header */
 				> header {
 
+					/* Header Navigation */
 					> nav {
 
 						li {
@@ -113,6 +113,7 @@ namespace aubreypwd\theme;
 						}
 					}
 
+					/* Profile Section */
 					.profile {
 
 						border-top: 1px solid var(--color-semi-space);
@@ -125,7 +126,9 @@ namespace aubreypwd\theme;
 						gap: calc( var(--padding-main-x) / 2 );
 
 						img {
+
 							border-radius: 10px;
+							border: 1px solid var(--color-black);
 						}
 
 						.information h1,
@@ -134,6 +137,7 @@ namespace aubreypwd\theme;
 						}
 
 						.information h1 {
+
 							font-size: 15px;
 							margin: 0;
 						}
@@ -151,6 +155,7 @@ namespace aubreypwd\theme;
 					position: relative;
 					z-index: 9;
 
+					/* Footer Navigation */
 					> nav {
 
 						border-bottom: 1px solid var(--color-semi-space);
@@ -165,6 +170,7 @@ namespace aubreypwd\theme;
 						}
 					}
 
+					/* Copyright */
 					.copyright {
 
 						padding: var(--padding-main-y) var(--padding-main-x);
@@ -176,6 +182,7 @@ namespace aubreypwd\theme;
 				/* Only on the main blog page */
 				&.blog {
 
+					/* Main Blog Article */
 					article {
 						border-bottom: 1px solid var(--color-jet);
 					}
@@ -184,6 +191,7 @@ namespace aubreypwd\theme;
 				&.single-post,
 				&.blog {
 
+					/* Blog Headers */
 					> header {
 
 						ul li:first-child {
@@ -192,12 +200,14 @@ namespace aubreypwd\theme;
 					}
 				}
 
+				/* Main Content Wrapper */
 				main {
 
 					border-top: 1px solid var(--color-semi-space);
 					border-bottom: 1px solid var(--color-jet);
 					position: relative;
 
+					/* Shadow before content */
 					&::before {
 
 						background: linear-gradient(to bottom, rgba(26,26,26,1) 0%,rgba(0,0,0,0) 100%);
@@ -212,20 +222,82 @@ namespace aubreypwd\theme;
 						z-index: 8;
 					}
 
+					/* Content Wrapper */
 					> .content {
 
 						position: relative;
 						z-index: 9;
+						font-size: 15px;
+						line-height: 22px;
+						font-weight: 300;
+						letter-spacing: 0;
 
 						/* Main Post & Pages */
 						article {
 
 							padding: var(--padding-main-y) var(--padding-main-x);
 
-							*:last-child {
+							& > * {
+								max-width: 100%;
+							}
+
+							/* Youtube Embeds */
+							& > iframe[src*="https://www.youtube"],
+							& > * > iframe[src*="https://www.youtube"] {
+								width: 100% !important;
+								min-width: 100% !important;
+								height: 450px;
+							}
+
+							/* Post Headers */
+							h1:not(:first-child),
+							h2,
+							h3,
+							h4,
+							h5,
+							h6 {
+
+								margin-block-start: calc( var(--padding-main-y) * 2 );
+								padding-bottom: var(--padding-main-y);
+							}
+
+							/* Bigger headers */
+							h1:not(:first-child),
+							h2 {
+								border-bottom: 1px solid var(--color-jet);
+							}
+
+							/* Smaller Headers */
+							h3,
+							h4,
+							h5,
+							h6 {
+								padding-bottom: calc( var(--padding-main-y) / 2 );
+							}
+
+							/* Don't add margin to the first element */
+							& > *:nth-child(2) {
+								margin-top: 0;
+
+								& > *:first-child,
+								& > *:first-child > *:first-child,
+								& > *:first-child > *:first-child > *:first-child {
+									margin-top: 0;
+								}
+							}
+
+							/* Don't add margin to last elements */
+							& > *:last-child {
 								margin-bottom: 0;
 							}
 
+							hr {
+								height: 1px;
+								border: 1px solid var(--color-jet);
+								padding: var(--padding-main-y) * 2;
+							}
+
+							/* Blog Post Headers */
 							> header {
 
 								a:link,
@@ -236,18 +308,56 @@ namespace aubreypwd\theme;
 
 								h1 {
 									margin-top: 0;
+									font-size: 22px;
+									line-height: 32px;
+									margin-bottom: calc( var(--padding-main-y) * 2 );
 								}
 							}
 
+							/* Blog Post Footer */
 							> footer {
-								padding-top: var(--padding-main-y);
+
+								& > *:last-child {
+									margin-bottom: 0;
+								}
 							}
 
+							/* Media */
 							img,
-							picture {
+							picture,
+							figure {
+
 								max-width: 100%;
 								height: auto;
 								border-radius: 5px;
+								margin: calc( var(--padding-main-y) * 2 ) auto;
+
+								&.aligncenter,
+								&.alignright,
+								&.alignleft {
+
+									margin-left: auto;
+									margin-right: auto;
+									display: block;
+								}
+
+								figcaption {
+
+									color: var(--color-white-ash);
+									font-size: 14px;
+								}
+							}
+						}
+
+						blockquote {
+
+							border-left: 1px solid var(--color-electric-blue);
+							margin-left: var(--padding-main-x);
+							padding-left: var(--padding-main-x);
+							font-style: italic;
+
+							*:last-child {
+								margin-bottom: 0;
 							}
 						}
 
@@ -255,6 +365,7 @@ namespace aubreypwd\theme;
 							color: var(--color-white-ash);
 						}
 
+						/* Main page post links */
 						.article-link {
 
 							display: flex;
@@ -273,16 +384,18 @@ namespace aubreypwd\theme;
 			}
 		</style>
 
-		<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" media="(min-width: 840px)">
+		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'desktop.css' ); ?>" media="(min-width: 900px)">
 
-		<!-- Fetch gravatar early -->
+		<!-- Fetch Gravatar Early -->
 		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 93 ) ); ?>">
 
+		<!-- All the shit WordPress puts on the page -->
 		<?php wp_head(); ?>
 	</head>
 
 	<body <?php body_class(); ?>>
 		<header>
+
 			<?php
 
 			wp_nav_menu(
@@ -296,9 +409,11 @@ namespace aubreypwd\theme;
 
 			<div class="profile">
 
+				<!-- Gravatar, should be preloaded -->
 				<img src="<?php echo esc_attr( my_gravatar( 93 ) ); ?>" alt="<?php esc_attr_e( 'Aubrey Portwood', 'aubreypwd' ); ?>">
 
 				<div class="information">
+
 					<h1>Aubrey Portwood</h1>
 					<p><?php bloginfo( 'description' ); ?></p>
 				</div>
@@ -312,6 +427,8 @@ namespace aubreypwd\theme;
 
 					<?php if ( have_posts() ) : ?>
 						<?php while ( have_posts() ) : the_post(); ?>
+
+							<!-- Show latest post in full -->
 							<?php if ( is_latest_post() ) : ?>
 
 								<article>
@@ -330,7 +447,8 @@ namespace aubreypwd\theme;
 									</footer>
 								</article>
 
-							<?php else : // Not latest post. ?>
+							<!-- Show the other posts as links to their single page -->
+							<?php else : ?>
 								<div class="article-link">
 									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
 									<span class="date"><?php the_date(); ?></span>
@@ -339,7 +457,8 @@ namespace aubreypwd\theme;
 						<?php endwhile; ?>
 					<?php endif; ?>
 
-				<?php else : // Single or Page. ?>
+				<!-- When not on the blog page, assume page or post single -->
+				<?php else : ?>
 
 					<article>
 						<header>
@@ -377,7 +496,7 @@ namespace aubreypwd\theme;
 			?>
 
 			<div class="copyright">
-				<small><?php esc_html_e( 'Copyright 2025 &mdash; Aubrey Portwood', 'aubreypwd' ); ?></small>
+				<?php esc_html_e( 'Copyright 2025 &mdash; Aubrey Portwood', 'aubreypwd' ); ?>
 			</div>
 		</footer>
 	</body>
