@@ -52,11 +52,11 @@ html {
 			}
 		}
 
+		/* Body Header and Footer */
 		> header,
 		> footer {
 
 			nav {
-
 				> ul {
 
 					padding: 0 calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) );
@@ -75,6 +75,7 @@ html {
 					padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 
 					> header {
+
 						h1 {
 							font-size: 32px;
 							line-height: 42px;
