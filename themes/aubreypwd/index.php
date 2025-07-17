@@ -51,7 +51,7 @@
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)" fetchpriority="low">
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'mid.css' ); ?>" media="(min-width: 600px)">
 
-		<link rel="icon" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'favicon.ico' ); ?>" type="image/x-icon" fetchpriority="low">
+		<link rel="icon" href="<?php echo my_avatar( 32 ); ?>" type="image/x-icon" fetchpriority="low">
 
 		<!-- All the shit WordPress puts on the page -->
 		<?php wp_head(); ?>
