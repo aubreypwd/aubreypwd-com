@@ -30,8 +30,8 @@ function my_gravatar( int $size = 150 ) {
 	// Yes, serve it up via imagekit so we get super small version.
 	return str_replace(
 		'://aubreypwd.com/wp-content/uploads/',
-		"://ik.imagekit.io/aubreypwd/tr:f-webp,q-100/,w-{$size},h-{$size}",
-		'https://aubreypwd.com/wp-content/uploads/2025/04/Computer-Lab-Cropped.jpg'
+		"://ik.imagekit.io/aubreypwd/tr:f-webp,q-99,w-{$size},h-{$size}/",
+		'https://aubreypwd.com/wp-content/uploads/avatar.jpg'
 	);
 }
 

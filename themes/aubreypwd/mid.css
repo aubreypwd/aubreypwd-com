@@ -43,6 +43,7 @@ html {
 				h1 {
 					font-size: 24px;
 					margin: 0 auto var(--padding-critical-y) auto;
+					display: block;
 				}
 
 				p {
