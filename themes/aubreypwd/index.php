@@ -31,7 +31,7 @@
 
 	<head>
 
-		<link rel="preconnect" href="<?php echo esc_attr( my_gravatar( 177 ) ); ?>">
+		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 		<link rel="preconnect" href="https://ik.imagekit.io">
 
 		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
@@ -42,7 +42,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 
-		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_gravatar( 177 ) ); ?>">
+		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 
 		<!-- Critical & Mobile CSS -->
 		<style><?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?></style>
@@ -77,7 +77,7 @@
 
 				<!-- Gravatar, should be preloaded -->
 				<img
-					src="<?php echo esc_attr( my_gravatar( 177 ) ); ?>"
+					src="<?php echo esc_attr( my_avatar( 177 ) ); ?>"
 					alt="<?php echo esc_attr__( 'Aubrey Portwood', 'aubreypwd' ); ?>"
 					fetchpriority="high"
 					referrerpolicy="no-referrer">

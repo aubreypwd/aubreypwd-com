@@ -25,13 +25,16 @@ function is_latest_post() {
 }
 
 // My gravatar.
-function my_gravatar( int $size = 150 ) {
+function my_avatar( int $size = 150 ) {
 
 	// Yes, serve it up via imagekit so we get super small version.
 	return str_replace(
-		'://aubreypwd.com/wp-content/uploads/',
-		"://ik.imagekit.io/aubreypwd/tr:f-webp,q-99,w-{$size},h-{$size}/",
-		'https://aubreypwd.com/wp-content/uploads/avatar.jpg'
+		[
+			'://aubreypwd.com/wp-content/uploads/',
+			sprintf( '://%s/wp-content/uploads/', $_SERVER['HTTP_HOST'] ?? 'aubreypwd.com' ),
+		],
+		"://ik.imagekit.io/aubreypwd/tr:f-webp,w-250,h-250/",
+		get_site_icon_url()
 	);
 }
 
