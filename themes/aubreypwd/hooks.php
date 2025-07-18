@@ -255,3 +255,36 @@ add_filter( 'media_send_to_editor', function( $html, $id, $attachment ) {
 
 // Add RSS to the theme.
 add_theme_support( 'automatic-feed-links' );
+
+// Replace youtube embeds with a thumbnail that links to the video instead.
+add_filter( 'the_content', function( $content ) {
+
+	return preg_replace_callback(
+		'#(?<!["\'=])\bhttps?://(?:www\.)?(?:youtube\.com/watch\?v=|youtu\.be/)([a-zA-Z0-9_-]{11})\b#i',
+
+		function ( $matches ) {
+			return sprintf(
+				'<figure><a href="%s" target="_blank" rel="noopener"><img src="%s" alt="%s" fetchpriority="high" /></a><figcaption>%s</figcaption></figure>',
+				esc_url( "https://www.youtube.com/watch?v={$matches[1]}" ),
+				esc_url( "https://img.youtube.com/vi/{$matches[1]}/maxresdefault.jpg" ),
+				__( 'Watch on YouTube', 'aubreypwd' ),
+				sprintf(
+					'<a href="%s">%s</a>',
+					esc_url( "https://www.youtube.com/watch?v={$matches[1]}" ),
+					__( 'Watch on Youtube...', 'aubreypwd' )
+				)
+			);
+		},
+		$content
+	);
+}, PHP_INT_MIN );
+
+// Disable the embed in the admin, just show the URL.
+add_filter( 'embed_oembed_html', function( $html, $url, $attr, $post_id ) {
+
+	if ( is_admin() && ( strpos( $url, 'youtube.com' ) !== false || strpos( $url, 'youtu.be' ) !== false ) ) {
+		return esc_url( $url ); // just show the raw URL
+	}
+
+	return $html;
+}, 10, 4 );

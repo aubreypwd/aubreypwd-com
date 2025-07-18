@@ -399,7 +399,6 @@ html {
 						max-width: 100%;
 						height: auto;
 						border-radius: 5px;
-						margin: calc( var(--padding-critical-y) * 2 ) auto;
 
 						&.aligncenter,
 						&.alignright,
@@ -419,8 +418,13 @@ html {
 				}
 
 				figure {
+					margin: calc( var(--padding-critical-y) * 2 ) auto;
+				}
+
+
+				figure {
 					img {
-						margin-bottom: calc( var(--padding-critical-y) / 2 );
+						margin: 0 auto calc( var(--padding-critical-y) / 2 ) auto;
 					}
 				}
 
