@@ -421,7 +421,6 @@ html {
 					margin: calc( var(--padding-critical-y) * 2 ) auto;
 				}
 
-
 				figure {
 					img {
 						margin: 0 auto calc( var(--padding-critical-y) / 2 ) auto;
@@ -435,6 +434,17 @@ html {
 					min-height: 500px;
 					background: var(--color-black);
 					border-radius: 10px !important;
+				}
+
+				img[src*="://img.youtube"] {
+
+					width: 773px;
+					height: auto;
+					min-width: 100%;
+					min-height: calc( 438px / 2 );
+					max-width: 100%;
+					max-height: 438px;
+					background: #000;
 				}
 
 			 	pre {
