@@ -40,18 +40,16 @@ html {
 
 				padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 
-				.information {
+				.information h1 {
 
-					h1 {
+					font-size: 18px;
+					line-height: 18px;
+					margin: 0 auto var(--padding-critical-y) auto;
+					display: block;
+				}
 
-						font-size: 20px;
-						margin: 0 auto var(--padding-critical-y) auto;
-						display: block;
-					}
-
-					p {
-						font-size: 15px;
-					}
+				.information p {
+					font-size: 15px;
 				}
 			}
 		}

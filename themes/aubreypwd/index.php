@@ -48,8 +48,8 @@
 		<style><?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?></style>
 
 		<!-- Non-critical CSS -->
-		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)" fetchpriority="low">
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'mid.css' ); ?>" media="(min-width: 600px)">
+		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'max.css' ); ?>" media="(min-width: 900px)" fetchpriority="low">
 
 		<link rel="icon" href="<?php echo my_avatar( 32 ); ?>" type="image/x-icon" fetchpriority="low">
 
