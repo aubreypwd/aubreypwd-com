@@ -2,6 +2,8 @@
 
 namespace aubreypwd\theme;
 
+require_once 'hooks.php';
+
 // Is the current post the latest post?
 function is_latest_post() {
 
