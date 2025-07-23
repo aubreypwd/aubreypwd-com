@@ -5,7 +5,7 @@ namespace aubreypwd\theme;
 add_action( 'template_redirect', function() {
 
 	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
-		return;
+		return; // Locally don't do this because it requires Apache rewrites.
 	}
 
 	ob_start(
@@ -17,7 +17,7 @@ add_action( 'template_redirect', function() {
 					preg_quote( $_SERVER['HTTP_HOST'], '#' )
 				),
 				function( $matches ) {
-					return sprintf( 'https://%s/%s-%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
+					return sprintf( '://%s/%s-%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
 				},
 				$html
 			);
