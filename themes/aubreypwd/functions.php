@@ -38,4 +38,26 @@ function my_avatar( int $size = 150 ) {
 	);
 }
 
+// Store the post in uploads/html/ for faster rendering later.
+function htmlify( $post_id ) {
+
+	if ( isset( $_GET['_as_html'] ) ) {
+		return; // Don't create the HTML when the HTML is being created.
+	}
+
+	if ( ! isset( $_SERVER['REQUEST_URI'], $_SERVER['HTTP_HOST'] ) ) {
+		return; // We need these to form a valid URL.
+	}
+
+	$html = file_get_contents( add_query_arg( '_as_html', '1', sprintf( 'https://%s/%s', $_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI'] ) ) );
+
+	if ( empty( $html ) ) {
+		return;
+	}
+
+	@mkdir( sprintf( '%s/html', wp_get_upload_dir()['basedir'] ) );
+
+	@file_put_contents( sprintf( '%s/html/%s.html', wp_get_upload_dir()['basedir'], $post_id ), $html );
+}
+
 require_once 'hooks.php';

@@ -288,3 +288,15 @@ add_filter( 'embed_oembed_html', function( $html, $url, $attr, $post_id ) {
 
 	return $html;
 }, 10, 4 );
+
+// Create cached HTML versions of posts as we load them.
+add_action( 'template_redirect', function () {
+
+	global $post;
+	htmlify( $post->ID );
+} );
+
+// Update the cached HTML version if a post is updated.
+add_action( 'save_post', function( $post_id ) {
+	htmlify( $post_id );
+} );
