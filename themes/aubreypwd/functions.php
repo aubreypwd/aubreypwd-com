@@ -57,6 +57,8 @@ function htmlify( $post_id ) {
 
 	@mkdir( sprintf( '%s/html', wp_get_upload_dir()['basedir'] ) );
 
+	$post_id = is_home( $post_id ) ? 'index' : $post_id; // For the home page, store as index.html.
+
 	@file_put_contents( sprintf( '%s/html/%s.html', wp_get_upload_dir()['basedir'], $post_id ), $html );
 }
 

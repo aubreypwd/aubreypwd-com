@@ -291,9 +291,7 @@ add_filter( 'embed_oembed_html', function( $html, $url, $attr, $post_id ) {
 
 // Create cached HTML versions of posts as we load them.
 add_action( 'template_redirect', function () {
-
-	global $post;
-	htmlify( $post->ID );
+	global $post; htmlify( $post->ID );
 } );
 
 // Update the cached HTML version if a post is updated.
