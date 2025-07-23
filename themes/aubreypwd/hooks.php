@@ -2,6 +2,21 @@
 
 namespace aubreypwd\theme;
 
+// Permalinks will always be plain.
+add_action( 'admin_menu', function () {
+
+	remove_submenu_page( 'options-general.php', 'options-permalink.php' );
+
+	add_action( 'admin_init', function() {
+
+		if ( true !== update_option( 'permalink_structure', '' ) ) {
+			return; // It wasn't fucked up, don't flush rules.
+		}
+
+		flush_rewrite_rules();
+	} );
+} );
+
 // Menus.
 add_action( 'init', function() {
 
