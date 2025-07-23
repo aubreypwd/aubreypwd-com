@@ -2,6 +2,17 @@
 
 namespace aubreypwd\theme;
 
+// Clean up my admin menu.
+add_action( 'admin_menu', function() {
+
+	// This shit is useless.
+	remove_submenu_page( 'options-general.php', 'options-privacy.php' );
+	remove_submenu_page( 'options-general.php', 'sqlite-integration' );
+	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
+	remove_submenu_page( 'themes.php', 'theme-editor.php' );
+	remove_submenu_page( 'users.php', 'wp-persistent-login-pricing' );
+}, PHP_INT_MAX );
+
 // Permalinks will always be plain.
 add_action( 'admin_menu', function () {
 
