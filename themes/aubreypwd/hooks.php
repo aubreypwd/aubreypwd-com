@@ -2,6 +2,26 @@
 
 namespace aubreypwd\theme;
 
+add_action( 'template_redirect', function() {
+
+	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
+		return;
+	}
+
+	ob_start(
+		function( $html ) {
+			return preg_replace(
+				sprintf(
+					'#://%s/\?(?:p|page_id)=([0-9]+)#',
+					preg_quote( $_SERVER['HTTP_HOST'], '#' )
+				),
+				sprintf( '://%s/$1.html', $_SERVER['HTTP_HOST'] ),
+				$html
+			);
+		}
+	);
+} );
+
 // Clean up my admin menu.
 add_action( 'admin_menu', function() {
 
