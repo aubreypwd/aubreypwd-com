@@ -11,6 +11,7 @@ add_action( 'admin_menu', function() {
 	remove_submenu_page( 'plugins.php', 'plugin-editor.php' );
 	remove_submenu_page( 'themes.php', 'theme-editor.php' );
 	remove_submenu_page( 'users.php', 'wp-persistent-login-pricing' );
+
 }, PHP_INT_MAX );
 
 // Permalinks will always be plain.
