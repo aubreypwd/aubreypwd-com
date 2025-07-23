@@ -10,12 +10,15 @@ add_action( 'template_redirect', function() {
 
 	ob_start(
 		function( $html ) {
-			return preg_replace(
+
+			return preg_replace_callback(
 				sprintf(
-					'#://%s/\?(?:p|page_id)=([0-9]+)#',
+					'#://%s/\?(p|page_id)=([0-9]+)#',
 					preg_quote( $_SERVER['HTTP_HOST'], '#' )
 				),
-				sprintf( '://%s/$1.html', $_SERVER['HTTP_HOST'] ),
+				function( $matches ) {
+					return sprintf( 'https://%s/%s-%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
+				},
 				$html
 			);
 		}
