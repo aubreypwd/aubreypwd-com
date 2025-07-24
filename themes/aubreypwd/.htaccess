@@ -1,0 +1,15 @@
+# Symlink to this .htaccess file from the root of the WP install.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
+RewriteRule ^pages/([0-9]+)\.html$ index.php?page_id=$1 [L]
+RewriteRule ^posts/index\.html$ index.php?page_id=243 [L]
+RewriteRule ^index\.html$ index.php [L]
+
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
