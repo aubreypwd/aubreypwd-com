@@ -7,8 +7,21 @@ require_once 'hooks.php';
 // Is the current post the latest post?
 function is_latest_post() {
 
+	static $sticky_shown = false;
+
+	if ( $sticky_shown ) {
+		return false;
+	}
+
 	if ( ! in_the_loop() || ! is_main_query() ) {
 		return false;
+	}
+
+	if ( is_sticky() ) {
+
+		$sticky_shown = true;
+
+		return true;
 	}
 
 	global $post; // Current post in the loop.

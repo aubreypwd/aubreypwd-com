@@ -108,6 +108,11 @@
 
 								<article>
 									<header>
+
+										<?php if ( is_sticky() ) : ?>
+											<span class="sticky"><?php esc_html_e( 'Pinned', 'aubreypwd' ); ?></span>
+										<?php endif; ?>
+
 										<a href="<?php the_permalink(); ?>">
 											<h1><?php the_title(); ?></h1>
 										</a>

@@ -447,7 +447,7 @@ html {
 					background: #000;
 				}
 
-			 	pre {
+				pre {
 					max-width: 100%;
 					overflow: scroll;
 					padding: var(--padding-critical-y);
@@ -470,6 +470,14 @@ html {
 				.date {
 					color: var(--color-white-ash);
 				}
+
+				span.sticky {
+					border-bottom: 2px solid#D6BF40;
+					color: #D6BF40;
+					margin: 0 0 calc( var(--padding-critical-x) * 2 ) calc( var(--padding-critical-x) * 2 );
+					float: right;
+				}
+
 
 				/* Main page post links */
 				.article-link {
