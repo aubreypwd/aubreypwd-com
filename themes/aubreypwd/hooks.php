@@ -32,7 +32,7 @@ add_action( 'template_redirect', function() {
 	*/
 
 	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
-		// return; // Locally don't do this because it requires Apache rewrites.
+		return; // Locally don't do this because it requires Apache rewrites.
 	}
 
 	ob_start(
