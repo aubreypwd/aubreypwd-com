@@ -52,15 +52,8 @@ add_action( 'template_redirect', function() {
 	);
 } );
 
-// Allow /index.html without adding trailing /.
-add_filter( 'redirect_canonical', function( $redirect_url, $requested_url ) {
-
-	if ( preg_match( '#/index\.html/?$#', $requested_url ) ) {
-		return false;
-	}
-
-	return $redirect_url;
-}, 10, 2 );
+// Just disable cononical redirects all together.
+remove_filter( 'template_redirect', 'redirect_canonical' );
 
 // Clean up my admin menu.
 add_action( 'admin_menu', function() {
