@@ -188,12 +188,12 @@ html {
 			}
 		}
 
-		&.single-post,
 		&.blog {
 
 			/* Blog Headers */
 			> header {
 
+				/* Latest First Menu Item */
 				ul li:first-child {
 					border-bottom: 2px solid var(--color-electric-blue);
 				}
