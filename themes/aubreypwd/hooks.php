@@ -2,25 +2,32 @@
 
 namespace aubreypwd\theme;
 
-// Use /page|post-<id>.php permalinks instead of ?p=<id> and ?page_id=<id>.
+// Use /page|post-<id>.html permalinks instead of ?p=<id> and ?page_id=<id>.
 add_action( 'template_redirect', function() {
 
 	/*
 
 	Requires something like:
 
-	<IfModule mod_rewrite.c>
-	RewriteEngine On
-	RewriteBase /
+	Apache:
 
-	RewriteRule ^post-([0-9]+)\.php$ index.php?p=$1 [L]
-	RewriteRule ^page-([0-9]+)\.php$ index.php?page_id=$1 [L]
+		<IfModule mod_rewrite.c>
+		RewriteEngine On
+		RewriteBase /
 
-	RewriteRule ^index\.php$ - [L]
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
-	RewriteRule . /index.php [L]
-	</IfModule>
+		RewriteRule ^post_([0-9]+)\.html$ index.php?p=$1 [L]
+		RewriteRule ^page_([0-9]+)\.html$ index.php?page_id=$1 [L]
+
+		RewriteRule ^index\.php$ - [L]
+		RewriteCond %{REQUEST_FILENAME} !-f
+		RewriteCond %{REQUEST_FILENAME} !-d
+		RewriteRule . /index.php [L]
+		</IfModule>
+
+	NGINX:
+
+		rewrite ^/post_([0-9]+)\.html$ /index.php?p=$1 last;
+		rewrite ^/page_([0-9]+)\.html$ /index.php?page_id=$1 last;
 
 	*/
 
@@ -37,7 +44,7 @@ add_action( 'template_redirect', function() {
 					preg_quote( $_SERVER['HTTP_HOST'], '#' )
 				),
 				function( $matches ) {
-					return sprintf( '://%s/%s-%d.php', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
+					return sprintf( '://%s/%s-%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
 				},
 				$html
 			);
