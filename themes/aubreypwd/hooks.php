@@ -15,8 +15,8 @@ add_action( 'template_redirect', function() {
 		RewriteEngine On
 		RewriteBase /
 
-		RewriteRule ^post_([0-9]+)\.html$ index.php?p=$1 [L]
-		RewriteRule ^page_([0-9]+)\.html$ index.php?page_id=$1 [L]
+		RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
+		RewriteRule ^pages/([0-9]+)\.html$ index.php?page_id=$1 [L]
 
 		RewriteRule ^index\.php$ - [L]
 		RewriteCond %{REQUEST_FILENAME} !-f
@@ -26,13 +26,13 @@ add_action( 'template_redirect', function() {
 
 	NGINX:
 
-		rewrite ^/post_([0-9]+)\.html$ /index.php?p=$1 last;
-		rewrite ^/page_([0-9]+)\.html$ /index.php?page_id=$1 last;
+		rewrite ^/posts/([0-9]+)\.html$ /index.php?p=$1 last;
+		rewrite ^/pages/([0-9]+)\.html$ /index.php?page_id=$1 last;
 
 	*/
 
 	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
-		return; // Locally don't do this because it requires Apache rewrites.
+		// return; // Locally don't do this because it requires Apache rewrites.
 	}
 
 	ob_start(
@@ -44,7 +44,7 @@ add_action( 'template_redirect', function() {
 					preg_quote( $_SERVER['HTTP_HOST'], '#' )
 				),
 				function( $matches ) {
-					return sprintf( '://%s/%s-%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'post' : 'page', $matches[2] );
+					return sprintf( '://%s/%s/%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'posts' : 'pages', $matches[2] );
 				},
 				$html
 			);
