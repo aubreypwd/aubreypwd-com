@@ -5,54 +5,27 @@ namespace aubreypwd\theme;
 // Use /page|post-<id>.html permalinks instead of ?p=<id> and ?page_id=<id>.
 add_action( 'template_redirect', function() {
 
-	/*
-
-	Requires something like:
-
-	Apache:
-
-		<IfModule mod_rewrite.c>
-		RewriteEngine On
-		RewriteBase /
-
-		RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
-		RewriteRule ^pages/([0-9]+)\.html$ index.php?page_id=$1 [L]
-
-		RewriteRule ^index\.php$ - [L]
-		RewriteCond %{REQUEST_FILENAME} !-f
-		RewriteCond %{REQUEST_FILENAME} !-d
-		RewriteRule . /index.php [L]
-		</IfModule>
-
-	NGINX:
-
-		rewrite ^/posts/([0-9]+)\.html$ /index.php?p=$1 last;
-		rewrite ^/pages/([0-9]+)\.html$ /index.php?page_id=$1 last;
-
-	*/
-
 	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
 		return; // Locally don't do this because it requires Apache rewrites.
 	}
 
-	ob_start(
-		function( $html ) {
+	// Symlink .htaccess to WP install root.
+	ob_start( function( $html ) {
 
-			return preg_replace_callback(
-				sprintf(
-					'#://%s/\?(p|page_id)=([0-9]+)#',
-					preg_quote( $_SERVER['HTTP_HOST'], '#' )
-				),
-				function( $matches ) {
-					return sprintf( '://%s/%s/%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'posts' : 'pages', $matches[2] );
-				},
-				$html
-			);
-		}
-	);
+		return preg_replace_callback(
+			sprintf(
+				'#://%s/\?(p|page_id)=([0-9]+)#',
+				preg_quote( $_SERVER['HTTP_HOST'], '#' )
+			),
+			function( $matches ) {
+				return sprintf( '://%s/%s/%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'posts' : 'pages', $matches[2] );
+			},
+			$html
+		);
+	} );
 } );
 
-// Just disable cononical redirects all together.
+// Just disable cononical redirects all together, they aren't worth it: my server will figure it out.
 remove_filter( 'template_redirect', 'redirect_canonical' );
 
 // Clean up my admin menu.
