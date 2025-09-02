@@ -21,7 +21,13 @@ progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-bo
 }
 
 @view-transition {
-	navigation: auto;
+  navigation: auto;
+}
+
+::view-transition-old(*),
+::view-transition-new(*) {
+	animation-duration: 75ms;
+	animation-timing-function: linear;
 }
 
 html {
