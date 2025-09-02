@@ -20,6 +20,10 @@ progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-bo
 	--padding-critical-y: 15px;
 }
 
+@view-transition {
+	navigation: auto;
+}
+
 html {
 
 	background-color: #1A1A1A;
