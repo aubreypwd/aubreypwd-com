@@ -213,8 +213,7 @@
 		<!-- All the shit WordPress puts in the footer -->
 		<?php wp_footer(); ?>
 
-		<a href="https://www.youtube-nocookie.com/embed/aRFBc73tWNw?si=MEmwxPRaB5_4x-HT&controls=0&start=64&autoplay=1"
-			target="_blank"
-			class="mozarts-ghost">&#960;</span>
+		<!-- Mozarts Ghost! -->
+		<a href="https://www.youtube-nocookie.com/embed/aRFBc73tWNw?si=MEmwxPRaB5_4x-HT&controls=0&start=64&autoplay=1" target="_blank" class="mozarts-ghost">&#960;</span>
 	</body>
 </html>
