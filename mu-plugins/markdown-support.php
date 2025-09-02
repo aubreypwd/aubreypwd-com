@@ -1,6 +1,9 @@
 <?php
 /**
  * Plugin Name: Markdown Support
+ *
+ * This mu-plugin adds Markdown (.md) support for ClassicPress, where
+ * you can enable it on new posts and use Markdown for content going forward.
  */
 
 namespace aubreypwd\markdown;
@@ -49,7 +52,6 @@ add_action( 'current_screen', function( $screen ) {
 			return;
 		}
 
-		// Metabox.
 		add_meta_box(
 			'post_markdown',
 			__( 'Markdown', 'aubreypwd' ),
@@ -85,7 +87,7 @@ add_action( 'current_screen', function( $screen ) {
 		);
 	} );
 
-	// Some JavScript.
+	// Some JavaScript.
 	add_action( 'admin_head', function() {
 
 		global $post;
@@ -98,23 +100,16 @@ add_action( 'current_screen', function( $screen ) {
 
 		<script>
 
-			// jQuery will be loaded on the page, let's just use that.
-			( function( $ ) {
+			// Toggling the option on and off.
+			jQuery( document ).on( 'change', 'input[name="post_markdown"]', function() {
 
-				// Toggling the option on and off.
-				$( document ).on( 'change', 'input[name="post_markdown"]', function() {
+				// Hide the Visual and Text switcher when enabled.
+				jQuery( 'button#content-tmce' ).css( 'display', this.checked ? 'none' : 'block' );
+				jQuery( 'button#content-html' ).css( 'display', this.checked ? 'none' : 'block' );
 
-					// Hide the Visual and Text switcher.
-					$( 'button#content-tmce' ).css( 'display', this.checked ? 'none' : 'block' );
-					$( 'button#content-html' ).css( 'display', this.checked ? 'none' : 'block' );
-
-					// Switch to Text mode.
-					$( this.checked ? 'button#content-html' : 'button#content-tmce' ).click();
-
-					// $( 'input[name="post_markdown"]' ).prop( 'disabled', true );
-				} );
-
-			} )( jQuery );
+				// Switch to Text/Visual mode based on toggle.
+				jQuery( this.checked ? 'button#content-html' : 'button#content-tmce' ).click();
+			} );
 		</script>
 
 		<?php
@@ -126,10 +121,10 @@ add_action( 'save_post', function( $post_id, $post ) {
 
 	if (
 
-		// Where we can do this.
-		! in_array( get_post_type( $post ), [ 'post', 'page' ], true ) // Posts and pages.
-		|| true !== is_admin()
+		// Can we make changes.
+		true !== is_admin()
 		|| true !== current_user_can( 'edit_posts' )
+		|| ! in_array( get_post_type( $post ), [ 'post', 'page' ], true ) // Posts and pages.
 
 		// Only on offical saves.
 		|| wp_is_post_autosave( $post )
@@ -141,23 +136,24 @@ add_action( 'save_post', function( $post_id, $post ) {
 		return;
 	}
 
-	$option = (
+	if ( 'disabled' === (
 
-		// The option was turned on for the first time.
+		// The option was enabled for the first time.
 		'on' === filter_input( INPUT_POST, 'post_markdown' )
 
-			// This post is already markdown, so it should remain enabled.
+			// Or, this post is already markdown, so it should remain enabled.
 			|| ! empty( get_post_meta( $post_id, 'post_markdown_html', true ) )
 	)
-		? 'enabled' // === 'on'
-		: 'disabled'; // not 'on'
+		? 'enabled'
+		: 'disabled' ) {
 
-	if ( 'disabled' === $option ) {
-		return; // Markdown not chosen.
+			// Markdown not chosen.
+			return;
 	}
 
-	$parsedown = new \ParseDown();
+	$parsedown = new \ParseDown(); // This does what you think it does.
 
+	// This is what we will show later on the frontend.
 	update_post_meta( $post->ID ?? 0, 'post_markdown_html', $parsedown->text( $post->post_content ?? '' ) );
 
 }, 10, 2 );
@@ -174,7 +170,7 @@ add_filter( 'user_can_richedit', function( $default ) {
 	return $default;
 } );
 
-// Also switch this way too.
+// Load the right mode for markdown and non-markdown posts.
 add_filter( 'wp_default_editor', function( $editor ) {
 
 	global $post;
