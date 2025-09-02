@@ -19,6 +19,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            git -C /home/aubrtdyz/aubreypwd.com/wp-content reset --hard origin/main
-            git -C /home/aubrtdyz/aubreypwd.com/wp-content clean -df
-            git -C /home/aubrtdyz/aubreypwd.com/wp-content pull origin main
+            git -C /home/${{secrets.SSH_USER}}/aubreypwd.com/wp-content reset --hard origin/main
+            git -C /home/${{secrets.SSH_USER}}/aubreypwd.com/wp-content clean -df
+            git -C /home/${{secrets.SSH_USER}}/aubreypwd.com/wp-content pull origin main
+            wp --path=/home/${{secrets.SSH_USER}}/aubreypwd.com/ plugin update --all --yes --quiet
+            wp --path=/home/${{secrets.SSH_USER}}/aubreypwd.com/ core update --yes --quiet
+            wp --path=/home/${{secrets.SSH_USER}}/aubreypwd.com/ core update-db --yes --quiet
