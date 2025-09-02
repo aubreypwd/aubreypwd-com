@@ -36,6 +36,10 @@ html {
 
 	body {
 
+		a.mozarts-ghost {
+			display: none;
+		}
+
 		background-color: var(--color-charchol);
 		color: var(--color-white);
 		font-family: Arial, sans-serif;

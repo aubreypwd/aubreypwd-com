@@ -5,6 +5,26 @@ html {
 		border-radius: 10px;
 		border: 1px solid var(--color-black);
 
+		a.mozarts-ghost {
+
+			display: block;
+			position: fixed;
+			bottom: 20px;
+			right: 20px;
+			font-size: 16px;
+			cursor: pointer;
+
+			&:link,
+			&:visited {
+				color: var(--color-jet);
+				text-decoration: none;
+			}
+
+			&:hover {
+				color: var(--color-electric-purple);
+			}
+		}
+
 		> header {
 
 			.profile {
