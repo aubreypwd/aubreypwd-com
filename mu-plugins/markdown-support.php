@@ -15,6 +15,10 @@ require_once sprintf( '%s/inc/Parsedown.php', untrailingslashit( __DIR__ ) );
 // Hook into the admin...
 add_action( 'current_screen', function( $screen ) {
 
+	if ( ! function_exists( 'classicpress_version' ) ) {
+		return; // This was built for and has only been tested on ClassicPress.
+	}
+
 	if ( ! is_admin() ) {
 		return;
 	}
