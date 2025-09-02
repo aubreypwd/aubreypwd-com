@@ -104,7 +104,7 @@ add_action( 'current_screen', function( $screen ) {
 				// Toggling the option on and off.
 				$( document ).on( 'change', 'input[name="post_markdown"]', function() {
 
-					// Hide the TinyMCE and Text switcher.
+					// Hide the Visual and Text switcher.
 					$( 'button#content-tmce' ).css( 'display', this.checked ? 'none' : 'block' );
 					$( 'button#content-html' ).css( 'display', this.checked ? 'none' : 'block' );
 
