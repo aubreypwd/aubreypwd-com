@@ -14,6 +14,7 @@ require_once sprintf( '%s/inc/Parsedown.php', untrailingslashit( __DIR__ ) );
 
 // Hook into the admin...
 add_action( 'current_screen', function( $screen ) {
+
 	if ( ! is_admin() ) {
 		return;
 	}
@@ -28,9 +29,23 @@ add_action( 'current_screen', function( $screen ) {
 		global $post;
 
 		if ( ! in_array( get_post_type( $post ), [ 'post', 'page' ], true ) ) {
+			return; // Posts and pages only.
+		}
+
+		if (
+
+			// There's post content already.
+			! empty( get_the_content( $post ) )
+
+				// And there is no markdown stored.
+				&& empty( get_post_meta( $post->ID ?? 0, 'post_markdown_html', true ) )
+		) {
+
+			// This is a non-markdown post, do not show markdown options.
 			return;
 		}
 
+		// Metabox.
 		add_meta_box(
 			'post_markdown',
 			__( 'Markdown', 'aubreypwd' ),
@@ -66,6 +81,7 @@ add_action( 'current_screen', function( $screen ) {
 		);
 	} );
 
+	// Some JavScript.
 	add_action( 'admin_head', function() {
 
 		global $post;
@@ -78,11 +94,10 @@ add_action( 'current_screen', function( $screen ) {
 
 		<script>
 
-			/**
-			 * Toggle the TinyMCE WYSIWYG editor on the fly when a checkbox changes.
-			 */
+			// jQuery will be loaded on the page, let's just use that.
 			( function( $ ) {
-				// Replace '#sms_markdown' with your checkbox selector.
+
+				// Toggling the option on and off.
 				$( document ).on( 'change', 'input[name="post_markdown"]', function() {
 
 					// Hide the TinyMCE and Text switcher.
@@ -90,10 +105,11 @@ add_action( 'current_screen', function( $screen ) {
 					$( 'button#content-html' ).css( 'display', this.checked ? 'none' : 'block' );
 
 					// Switch to Text mode.
-					$( 'button#content-html' ).click();
+					$( this.checked ? 'button#content-html' : 'button#content-tmce' ).click();
 
 					// $( 'input[name="post_markdown"]' ).prop( 'disabled', true );
 				} );
+
 			} )( jQuery );
 		</script>
 
@@ -105,12 +121,18 @@ add_action( 'current_screen', function( $screen ) {
 add_action( 'save_post', function( $post_id, $post ) {
 
 	if (
-		wp_is_post_autosave( $post )
-		 || wp_is_post_revision( $post )
-		 || 1 !== wp_verify_nonce( filter_input( INPUT_POST, 'post_markdown_nonce' ), 'post_markdown_enable' )
-		 || true !== current_user_can( 'edit_posts' )
-		 || true !== is_admin()
-		 || ! in_array( get_post_type( $post ), [ 'post', 'page' ], true )
+
+		// Where we can do this.
+		! in_array( get_post_type( $post ), [ 'post', 'page' ], true ) // Posts and pages.
+		|| true !== is_admin()
+		|| true !== current_user_can( 'edit_posts' )
+
+		// Only on offical saves.
+		|| wp_is_post_autosave( $post )
+		|| wp_is_post_revision( $post )
+
+		// Nonce check.
+		|| 1 !== wp_verify_nonce( filter_input( INPUT_POST, 'post_markdown_nonce' ), 'post_markdown_enable' )
 	) {
 		return;
 	}
@@ -146,6 +168,18 @@ add_filter( 'user_can_richedit', function( $default ) {
 	}
 
 	return $default;
+} );
+
+// Also switch this way too.
+add_filter( 'wp_default_editor', function( $editor ) {
+
+	global $post;
+
+	if ( ! empty( get_post_meta( $post->ID ?? 0, 'post_markdown_html', true ) ) ) {
+		return 'html'; // Always use the html mode when editing posts with markdown.
+	}
+
+	return 'tinymce'; // This is opinionated, if the content is not MD always use Visual mode.
 } );
 
 // Show the markdown HTML (frontend) instead of the normal the_content.
