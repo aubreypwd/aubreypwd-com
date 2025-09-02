@@ -54,8 +54,10 @@
 			}
 		</script>
 
+		<!-- Preconnect -->
 		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 		<link rel="preconnect" href="https://ik.imagekit.io">
+		<link rel="preconnect" href="https://www.youtube-nocookie.com" fetchpriority="low">
 
 		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
 
