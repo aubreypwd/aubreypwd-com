@@ -31,6 +31,29 @@
 
 	<head>
 
+		<script type="speculationrules">
+			{
+				"prerender": [
+					{
+						"source": "document",
+						"where": {
+							"and": [
+								{
+									"selector_matches": "a[href]"
+								},
+								{
+									"not": {
+										"selector_matches": "a[href^=\"/wp-\"]"
+									}
+								}
+							]
+						},
+						"eagerness": "moderate"
+					}
+				]
+			}
+		</script>
+
 		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 		<link rel="preconnect" href="https://ik.imagekit.io">
 
