@@ -217,5 +217,44 @@
 
 		<!-- Mozarts Ghost! -->
 		<a href="https://www.youtube-nocookie.com/embed/aRFBc73tWNw?si=MEmwxPRaB5_4x-HT&start=64&autoplay=1&loop=1&end=94" target="_blank" class="mozarts-ghost">&#960;</span>
+
+		<script>
+				console.log(`
+					 _   _      _ _
+					| | | | ___| | | ___
+					| |_| |/ _ \\ | |/ _ \\
+					|  _  |  __/ | | (_) |
+					|_| |_|\\___|_|_|\\___/
+
+					My name is Aubrey Portwood, everywhere online @aubreypwd.
+
+					I'm an ex-Senior WordPress Developer that has since turned to working on
+					web performance. I've worked with large WordPress agencies, companies like
+					Microsoft, Starbucks, and Kroger and built high-scaled WordPress plugins.
+					I have over 18 years experience working in WordPress. Over 20 years working
+					on the web.
+
+					Check me out at:
+
+					https://github.com/aubreypwd
+					https://x.com/aubreypwd
+					https://linkedin.com/in/aubreypwd
+
+					Maybe you're curious about how my site works?
+
+					It runs ClassicPress, with all the normal WordPress bells-N-whistles like
+					Gutenberg, etc turned off and I write most of my content in Markdown. This site
+					implements a lot of performance features such as AVIF images (CDN), view transitions,
+					inlined critical CSS, etc. It was ground-zero for when I started learning more about
+					web performance!
+
+					You can learn more by visiting: https://github.com/aubreypwd/aubreypwd-com
+
+					It also has a handfull of easter eggs that I hope will grow over time. :)
+					Oh, and this site was "human-coded," never vibe coded.
+
+					Thanks for visiting!
+				`);
+		</script>
 	</body>
 </html>
