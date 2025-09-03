@@ -136,7 +136,7 @@ add_action( 'save_post', function( $post_id, $post ) {
 		return;
 	}
 
-	if ( 'disabled' === (
+	$option = (
 
 		// The option was enabled for the first time.
 		'on' === filter_input( INPUT_POST, 'post_markdown' )
@@ -145,7 +145,9 @@ add_action( 'save_post', function( $post_id, $post ) {
 			|| ! empty( get_post_meta( $post_id, 'post_markdown_html', true ) )
 	)
 		? 'enabled'
-		: 'disabled' ) {
+		: 'disabled';
+
+	if ( 'enabled' !== $option ) {
 
 			// Markdown not chosen.
 			return;
