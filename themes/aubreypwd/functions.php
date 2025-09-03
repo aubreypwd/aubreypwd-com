@@ -48,7 +48,7 @@ function my_avatar( int $size = 150 ) {
 			'://aubreypwd.com/wp-content/uploads/',
 			sprintf( '://%s/wp-content/uploads/', $_SERVER['HTTP_HOST'] ?? 'aubreypwd.com' ),
 		],
-		"://ik.imagekit.io/aubreypwd/tr:f-webp,w-{$size},h-{$size}/",
+		"://ik.imagekit.io/aubreypwd/tr:f-avif,w-{$size},h-{$size}/",
 		get_site_icon_url()
 	);
 }
