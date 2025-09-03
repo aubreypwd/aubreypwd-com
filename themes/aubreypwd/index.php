@@ -216,6 +216,6 @@
 		<?php wp_footer(); ?>
 
 		<!-- Mozarts Ghost! -->
-		<a href="https://www.youtube-nocookie.com/embed/aRFBc73tWNw?si=MEmwxPRaB5_4x-HT&start=64&autoplay=1&loop=1" target="_blank" class="mozarts-ghost">&#960;</span>
+		<a href="https://www.youtube-nocookie.com/embed/aRFBc73tWNw?si=MEmwxPRaB5_4x-HT&start=64&autoplay=1&loop=1&end=94" target="_blank" class="mozarts-ghost">&#960;</span>
 	</body>
 </html>
