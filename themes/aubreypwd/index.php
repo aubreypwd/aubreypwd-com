@@ -68,7 +68,7 @@
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 
 		<!-- Preload -->
-		<link rel="preload" as="image" type="image/webp" fetchpriority="high" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
+		<link rel="preload" as="image" type="image/avif" fetchpriority="high" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 
 		<!-- Critical & Mobile CSS -->
 		<style><?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?></style>

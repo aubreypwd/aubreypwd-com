@@ -220,7 +220,7 @@ add_action( 'script_loader_tag', function( $tag, $handle ) {
 // Remove emoji bullshit.
 remove_action( 'wp_print_styles', 'print_emoji_styles' );
 
-// Convert images on the fly to webp and reduce image size with imagekit.io.
+// Convert images on the fly to avif and reduce image size with imagekit.io.
 add_filter( 'the_content', function( $content ) {
 
 	$converted_content = $content;
@@ -228,7 +228,7 @@ add_filter( 'the_content', function( $content ) {
 	// Whatever host this site is running on.
 	$host = preg_quote( $_SERVER['HTTP_HOST'], '#' );
 
-	// Image replacement: add transformations: webp, 70 quality, and max width 1024 (my theme will never be wider than that).
+	// Image replacement: add transformations: avif, 70 quality, and max width 1024 (my theme will never be wider than that).
 	$converted_content = preg_replace(
 		sprintf( '#https?://(?:aubreypwd\.com|%s)/wp-content/uploads/([^\s"\']+?\.(jpe?g|png|bmp|webp))#i', $host ),
 		'https://ik.imagekit.io/aubreypwd/tr:f-web,q-71,w-1024/wp-content/uploads/$1',
