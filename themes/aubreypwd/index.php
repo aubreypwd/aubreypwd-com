@@ -152,7 +152,9 @@ namespace aubreypwd\theme;
 										</a>
 									</header>
 
-									<?php the_content(); ?>
+									<div class="article-content">
+										<?php the_content(); ?>
+									</div>
 
 									<footer>
 										<p class="date">
@@ -185,7 +187,9 @@ namespace aubreypwd\theme;
 							</a>
 						</header>
 
-						<?php the_content(); ?>
+						<div class="article-content">
+							<?php the_content(); ?>
+						</div>
 
 						<?php if ( ! is_page() ) : ?>
 

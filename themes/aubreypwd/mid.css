@@ -95,10 +95,12 @@ html {
 				/* Posts */
 				article {
 
-					padding: calc( var(--padding-critical-y)
-							* var( --mid-padding-multiplier ) )
-						calc( var(--padding-critical-x)
-							* var( --mid-padding-multiplier ) );
+					> footer {
+						padding:
+							calc( var(--padding-critical-y) * 2 )
+							calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
+							calc( var(--padding-critical-y) * 3 );
+					}
 
 					> header {
 
@@ -109,39 +111,51 @@ html {
 							font-weight: 300;
 
 							margin-top: calc( var(--padding-critical-y) / 2 );
-							margin-bottom: calc( var(--padding-critical-y) * 2 );
-							padding-bottom: calc(var(--padding-critical-y) * 2 );
+							margin-bottom: 0;
+
+							padding:
+								calc( var(--padding-critical-y) * var(--mid-padding-multiplier ) )
+								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) );
 						}
 					}
 
-					/* Bigger headers */
-					h1:not(:first-child),
-					h2 {
-						font-size: 30px;
-					}
+					.article-content {
 
-					img,
-					picture,
-					figure {
+							padding:
+								calc( calc( var(--padding-critical-y) * 1.5 ) * var(--mid-padding-multiplier) )
+								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
+								0;
 
-						&.aligncenter {
 
-							margin-left: auto;
-							margin-right: auto;
-							display: block;
-						}
+							/* Bigger headers */
+							h1:not(:first-child),
+							h2 {
+								font-size: 30px;
+							}
 
-						&.alignright {
+							img,
+							picture,
+							figure {
 
-							float: right;
-							margin: var(--padding-critical-x) 0 var(--padding-critical-x) var(--padding-critical-x);
-						}
+								&.aligncenter {
 
-						&.alignleft {
+									margin-left: auto;
+									margin-right: auto;
+									display: block;
+								}
 
-							float: left;
-							margin: var(--padding-critical-x) var(--padding-critical-x) var(--padding-critical-x) 0;
-						}
+								&.alignright {
+
+									float: right;
+									margin: var(--padding-critical-x) 0 var(--padding-critical-x) var(--padding-critical-x);
+								}
+
+								&.alignleft {
+
+									float: left;
+									margin: var(--padding-critical-x) var(--padding-critical-x) var(--padding-critical-x) 0;
+								}
+							}
 					}
 				}
 
