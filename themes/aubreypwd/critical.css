@@ -348,7 +348,7 @@ html {
 
 					.article-content {
 
-						padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-x) 0;
+						padding: var(--padding-critical-y) var(--padding-critical-x) 0;
 						margin-top: 0;
 
 						> *:first-child {
