@@ -154,7 +154,6 @@ html {
 					font-size: 15px;
 					line-height: 20px;
 					margin-top: calc( var(--padding-critical-x) * 2 );
-					/* margin-left: calc( var(--padding-critical-x) / 4 ); */
 				}
 			}
 		}

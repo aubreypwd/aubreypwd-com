@@ -61,10 +61,8 @@ html {
 				}
 
 				.information p {
-
 					font-size: 17px;
 					line-height: 25px;
-					margin-left: calc( var(--padding-critical-x) / 2 );
 				}
 
 				img {
