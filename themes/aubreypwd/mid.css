@@ -41,12 +41,16 @@ html {
 				text-align: left;
 
 				padding:
-					calc( var(--padding-critical-y) * calc( var( --mid-padding-multiplier ) * 1 ) )
+					var(--padding-critical-y)
+					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) )
+					calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) )
 					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 
 				.information h1,
 				.information p {
-					padding: calc( var(--padding-critical-y) / 2 ) calc( var(--padding-critical-y) * 2 ) 0 0;
+					padding:
+						calc( var(--padding-critical-y) / 2 )
+						calc( var(--padding-critical-y) * 2 ) 0 0;
 				}
 
 				.information h1 {
