@@ -71,9 +71,6 @@ namespace aubreypwd\theme;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 
-		<!-- Preload -->
-		<link rel="preload" as="image" type="image/avif" fetchpriority="high" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
-
 		<!-- Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,7 +116,7 @@ namespace aubreypwd\theme;
 
 				<!-- Gravatar, should be preloaded -->
 				<img
-					src="<?php echo esc_attr( my_avatar( 177 ) ); ?>"
+					src="<?php echo esc_attr( my_avatar( 110 ) ); ?>"
 					alt="<?php echo esc_attr__( 'Aubrey Portwood', 'aubreypwd' ); ?>"
 					fetchpriority="high"
 					referrerpolicy="no-referrer">

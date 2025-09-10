@@ -29,6 +29,10 @@ html {
 
 			.profile {
 
+				img {
+					margin-right: var(--padding-critical-x);
+				}
+
 				.information h1 {
 
 					font-size: 72px;
@@ -37,6 +41,10 @@ html {
 					span {
 						display: inline;
 					}
+				}
+
+				.information p {
+					margin-top: calc( var(--padding-critical-y) / 2 );
 				}
 			}
 		}

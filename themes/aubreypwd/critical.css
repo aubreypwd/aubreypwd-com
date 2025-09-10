@@ -122,21 +122,23 @@ html {
 				align-items: center;
 				align-content: center;
 				justify-content: center;
-				padding: calc( var(--padding-critical-y) * 1.5 ) var(--padding-critical-x);
+				padding: calc( var(--padding-critical-y) * 1.5 );
 				gap: calc( var(--padding-critical-x) / 2 );
-				/* text-align: center; */
 
 				img {
-					display:none;
+					border-radius: 10px;
+					border: 1px solid var(--color-black);
+					display: none;
 				}
 
 				.information h1 {
 
-					padding-left: calc( var(--padding-critical-y) / 3 );
+					margin-bottom: calc( var(--padding-critical-y) / 2 );
+					margin-top: var(--padding-critical-x);
 
 					font-family: 'Instrument Serif';
 					font-style: italic;
-					font-size: 42px;
+					font-size: 52px;
 
 					color: var(--color-electric-blue);
 
@@ -151,6 +153,7 @@ html {
 					color: var(--color-white-ash);
 					font-size: 15px;
 					line-height: 20px;
+					margin-top: calc( var(--padding-critical-x) * 2 );
 				}
 			}
 		}
@@ -381,14 +384,13 @@ html {
 						}
 
 						h1 {
+
 							margin-top: 0;
 							margin-top: calc( var(--padding-critical-y) * 1 );
 							margin-bottom: calc( var(--padding-critical-y) * 2 );
 							font-family: 'Instrument Serif';
-
 							color: var(--color-white-ash);
 							border-bottom: 1px solid var(--color-jet);
-							/* display: inline-block; */
 							padding-bottom: calc( var(--padding-critical-y) * 2 );
 							font-size: 27px;
 							line-height: 30px;
