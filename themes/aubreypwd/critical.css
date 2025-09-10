@@ -137,6 +137,7 @@ html {
 					margin-top: var(--padding-critical-x);
 
 					font-family: 'Instrument Serif';
+					font-weight: 500;
 					font-style: italic;
 					font-size: 52px;
 
@@ -326,6 +327,7 @@ html {
 						padding-bottom: calc( var(--padding-critical-y) / 2 );
 						color: var(--color-white-ash);
 						font-family: 'Instrument Serif';
+						font-weight: 300;
 					}
 
 					/* Bigger headers */
