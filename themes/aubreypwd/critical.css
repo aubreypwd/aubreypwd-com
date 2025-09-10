@@ -13,7 +13,7 @@ progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-bo
 	--color-white-ash: #919191;
 	--color-electric-blue: #198CFF;
 	--color-electric-purple: #ED52ED;
-	--color-semi-space: #131313;
+	--color-semi-space: #101010;
 
 	/* Spacing */
 	--padding-critical-x: 15px;
@@ -32,7 +32,7 @@ progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-bo
 
 html {
 
-	background-color: #1A1A1A;
+	background-color: var(--color-semi-space);
 
 	body {
 
