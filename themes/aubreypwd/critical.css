@@ -391,7 +391,6 @@ html {
 							/* display: inline-block; */
 							padding-bottom: calc( var(--padding-critical-y) * 2 );
 							font-size: 27px;
-							/* text-align: center; */
 							line-height: 30px;
 						}
 					}

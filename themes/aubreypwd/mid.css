@@ -41,7 +41,7 @@ html {
 				text-align: left;
 
 				padding:
-					calc( var(--padding-critical-y) * calc( var( --mid-padding-multiplier ) * 1.5 ) )
+					calc( var(--padding-critical-y) * calc( var( --mid-padding-multiplier ) * 1 ) )
 					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 
 				.information h1,
@@ -51,8 +51,8 @@ html {
 
 				.information h1 {
 
-					font-size: 44px;
-					line-height: 44px;
+					font-size: 54px;
+					line-height: 54px;
 					margin: 0 auto var(--padding-critical-y) auto;
 					display: block;
 					padding-left: calc( var(--padding-critical-y) / 4 );

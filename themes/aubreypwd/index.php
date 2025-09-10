@@ -113,7 +113,7 @@ namespace aubreypwd\theme;
 			<div class="profile">
 
 				<div class="information">
-					<h1>Aubrey Portwood</h1>
+					<h1><?php bloginfo( 'title' ); ?></h1>
 					<p><?php bloginfo( 'description' ); ?></p>
 				</div>
 
