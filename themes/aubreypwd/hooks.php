@@ -1,9 +1,11 @@
-<?php
+<?php // phpcs:disable
 
 namespace aubreypwd\theme;
 
 // Use /page|post-<id>.html permalinks instead of ?p=<id> and ?page_id=<id>.
 add_action( 'template_redirect', function() {
+
+	return; // Yeah, disabling this for now: it was fun but it's going to get complicated.
 
 	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
 		return; // Locally don't do this because it requires Apache rewrites.
