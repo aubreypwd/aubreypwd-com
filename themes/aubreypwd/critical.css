@@ -149,8 +149,7 @@ html {
 				.information p {
 
 					color: var(--color-white-ash);
-					font-size: 13px;
-					margin-bottom: 0;
+					font-size: 15px;
 					line-height: 20px;
 				}
 			}
