@@ -1,4 +1,8 @@
-<?php namespace aubreypwd\theme; ?><!DOCTYPE html>
+<?php // phpcs:disable
+
+namespace aubreypwd\theme;
+
+?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 
 	<!--
@@ -70,8 +74,15 @@
 		<!-- Preload -->
 		<link rel="preload" as="image" type="image/avif" fetchpriority="high" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
 
+		<!-- Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
 		<!-- Critical & Mobile CSS -->
-		<style><?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?></style>
+		<style>
+			<?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?>
+		</style>
 
 		<!-- Non-critical CSS -->
 		<link rel="stylesheet" href="<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), 'mid.css' ); ?>" media="(min-width: 600px)">
@@ -101,6 +112,11 @@
 
 			<div class="profile">
 
+				<div class="information">
+					<h1>Aubrey Portwood</h1>
+					<p><?php bloginfo( 'description' ); ?></p>
+				</div>
+
 				<!-- Gravatar, should be preloaded -->
 				<img
 					src="<?php echo esc_attr( my_avatar( 177 ) ); ?>"
@@ -108,11 +124,6 @@
 					fetchpriority="high"
 					referrerpolicy="no-referrer">
 
-				<div class="information">
-
-					<h1>Aubrey Portwood <span>&mdash; <?php bloginfo( 'name' ); ?></span></h1>
-					<p><?php bloginfo( 'description' ); ?></p>
-				</div>
 			</div>
 
 		</header>
@@ -148,7 +159,7 @@
 
 									<footer>
 										<p class="date">
-											<?php the_date(); ?>
+											<?php echo get_the_date(); ?>
 										</p>
 									</footer>
 								</article>
@@ -158,7 +169,7 @@
 								<!-- Show the other posts as links to their single page -->
 								<div class="article-link">
 									<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
-									<span class="date"><?php the_date(); ?></span>
+									<span class="date"><?php echo get_the_date(); ?></span>
 								</div>
 							<?php endif; ?>
 

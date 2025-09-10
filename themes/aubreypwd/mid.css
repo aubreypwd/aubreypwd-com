@@ -1,5 +1,5 @@
 :root {
-	--mid-padding-multiplier: 2.5;
+	--mid-padding-multiplier: 2;
 }
 
 html {
@@ -38,18 +38,40 @@ html {
 			/* Profile */
 			.profile {
 
-				padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+				text-align: left;
+
+				padding:
+					calc( var(--padding-critical-y) * calc( var( --mid-padding-multiplier ) * 1.5 ) )
+					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+
+				.information h1,
+				.information p {
+					padding: calc( var(--padding-critical-y) / 2 ) calc( var(--padding-critical-y) * 2 ) 0 0;
+				}
 
 				.information h1 {
 
-					font-size: 18px;
-					line-height: 18px;
+					font-size: 44px;
+					line-height: 24px;
 					margin: 0 auto var(--padding-critical-y) auto;
 					display: block;
+					padding-left: calc( var(--padding-critical-y) / 2 );
 				}
 
 				.information p {
 					font-size: 15px;
+				}
+
+				img {
+					display: inline-block;
+
+					border-radius: 10px;
+					border: 1px solid var(--color-black);
+
+					min-height: 110px;
+					max-height: 110px;
+					min-width: 110px;
+					max-width: 110px;
 				}
 			}
 		}
@@ -74,13 +96,28 @@ html {
 				/* Posts */
 				article {
 
-					padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+					padding: calc( var(--padding-critical-y)
+							* var( --mid-padding-multiplier ) )
+						calc( var(--padding-critical-x)
+							* var( --mid-padding-multiplier ) );
 
 					> header {
+
 						h1 {
-							font-size: 32px;
-							line-height: 42px;
+							font-size: 36px;
+							line-height: 56px;
+							text-align: left;
+
+							margin-top: calc( var(--padding-critical-y) / 2 );
+							margin-bottom: calc( var(--padding-critical-y) * 2 );
+							padding-bottom: calc(var(--padding-critical-y) * 2 );
 						}
+					}
+
+					/* Bigger headers */
+					h1:not(:first-child),
+					h2 {
+						font-size: 30px;
 					}
 
 					img,
