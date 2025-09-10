@@ -314,7 +314,7 @@ html {
 
 						h1 {
 
-							margin-top: calc( var(--padding-critical-y) * 1 );
+							margin-top: 0;
 							margin-bottom: 0;
 							font-family: 'Instrument Serif';
 							color: var(--color-white-ash);
@@ -324,10 +324,10 @@ html {
 							line-height: 30px;
 
 							padding:
-								calc( var(--padding-critical-y) )
-								calc( var(--padding-critical-x) )
-								calc( var(--padding-critical-y) * 2 )
-								calc( var(--padding-critical-x) );
+								var(--padding-critical-y)
+								var(--padding-critical-x)
+								var(--padding-critical-y)
+								var(--padding-critical-x);
 						}
 					}
 
