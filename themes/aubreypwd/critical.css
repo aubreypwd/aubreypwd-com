@@ -135,8 +135,7 @@ html {
 
 					/* Site Title */
 					h1 {
-						margin-bottom: calc( var(--padding-critical-y) / 2 );
-						margin-top: var(--padding-critical-x);
+						margin: var(--padding-critical-x) 0;
 						font-family: 'Instrument Serif';
 						font-weight: 500;
 						font-style: italic;
@@ -482,7 +481,7 @@ html {
 
 					/* Post Header */
 					> header {
-						padding: calc( var(--padding-critical-y) * 2 ) calc( var(--padding-critical-x) * 1 );
+						padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-x);
 						border-bottom: 1px solid var(--color-jet);
 
 						h1 {
