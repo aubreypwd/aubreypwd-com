@@ -202,9 +202,11 @@ html {
 							font-family: 'Instrument Serif';
 							color: var(--color-white-ash);
 							border-bottom: 1px solid var(--color-jet);
-							box-shadow: 1px 1px 1px var(--color-semi-space);
+							box-shadow: 0 1px 0 var(--color-semi-space);
 							font-size: 27px;
 							line-height: 30px;
+							display: block;
+							width: 100%;
 
 							padding:
 								calc( var(--padding-critical-y) * 2 )
