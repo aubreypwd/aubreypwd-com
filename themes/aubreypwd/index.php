@@ -34,7 +34,6 @@ namespace aubreypwd\theme;
 	-->
 
 	<head>
-
 		<script type="speculationrules">
 			{
 				"prerender": [
@@ -144,7 +143,7 @@ namespace aubreypwd\theme;
 									<header>
 
 										<?php if ( is_sticky() ) : ?>
-											<span class="sticky"><?php esc_html_e( 'Pinned', 'aubreypwd' ); ?></span>
+											<span class="sticky" title="<?php esc_html_e( 'This post is pinned, it may not be the latest post.', 'aubreypwd' ); ?>"><?php esc_html_e( 'Pinned', 'aubreypwd' ); ?></span>
 										<?php endif; ?>
 
 										<a href="<?php the_permalink(); ?>">

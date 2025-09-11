@@ -205,9 +205,7 @@ html {
 							line-height: 30px;
 
 							padding:
-								var(--padding-critical-y)
-								var(--padding-critical-x)
-								var(--padding-critical-y)
+								calc( var(--padding-critical-y) * 2 )
 								var(--padding-critical-x)
 							;
 						}
@@ -215,12 +213,12 @@ html {
 
 					/* All Post Content */
 					.article-content {
-						padding: var(--padding-critical-y) var(--padding-critical-x) 0;
+						padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-x) 0;
 						margin-top: 0;
 
 						/* The first and last element in the post content */
-						*:first-child { margin-top: 0; }
-						*:last-child { margin-bottom: 0; }
+						> *:first-child { margin-top: 0; }
+						> *:last-child { margin-bottom: 0; }
 
 						/* Clear Floats */
 						&:after {
@@ -230,19 +228,16 @@ html {
 						}
 
 						/* Make sure nothing exceeds the content area */
-						> * {
+						* {
 							max-width: 100%;
 						}
 
 						/* Post Headers - Except first h1 - Layout */
 						h1:not(:first-child), h2, h3, h4, h5, h6 {
-							margin-block-start: calc( var(--padding-critical-y) * 2 );
-							padding-bottom: calc( var(--padding-critical-y) / 4 );
 							color: var(--color-white-ash);
 							font-family: 'Instrument Serif';
 							font-weight: 300;
 							display: inline-block;
-							border-bottom: 0.5px solid #505050;
 						}
 
 						/* Make all first h1's and h2's the same font-size. */
@@ -253,6 +248,7 @@ html {
 						/* All other headers after first h1 and h2's */
 						h3, h4, h5, h6 {
 							padding-bottom: calc( var(--padding-critical-y) / 2 );
+							font-size: 20px;
 						}
 
 						/* Formatting tags */
@@ -263,8 +259,10 @@ html {
 							max-width: 100%;
 							overflow: scroll;
 							padding: var(--padding-critical-y);
+							margin: calc( var(--padding-critical-y) * 2 ) 0;
 							background-color: var(--color-jet);
 							border-radius: 5px;
+							border: 1px solid var(--color-semi-space);
 						}
 
 						blockquote {
@@ -290,6 +288,7 @@ html {
 							max-width: 100%;
 							height: auto;
 							border-radius: 5px;
+							border: 1px solid var(--color-semi-space);
 
 							&.aligncenter,
 							&.alignright,
@@ -334,6 +333,19 @@ html {
 							background: #000;
 						}
 
+						> iframe {
+							background-color: var(--color-black);
+						}
+
+						/* Vimeo Embeds */
+						.embed-vimeo {
+							background-color: var(--color-black);
+
+							> iframe {
+								width: 100%;
+							}
+						}
+
 						/* Youtube Embeds */
 						& > iframe[src*="https://www.youtube"],
 						& > * > iframe[src*="https://www.youtube"] {
@@ -344,11 +356,6 @@ html {
 							border-radius: 10px;
 						}
 					} /* .article-content */
-
-					/* Post Date */
-					.date {
-						color: var(--color-white-ash);
-					}
 
 					/* Post Footer */
 					> footer {
@@ -363,6 +370,10 @@ html {
 						> *:first-child {
 							margin: 0;
 						}
+
+						.date {
+							color: var(--color-white-ash);
+						}
 					}
 				} /* article */
 
@@ -370,32 +381,33 @@ html {
 
 				/* Sticky Badge */
 				.sticky {
-					border-bottom: 2px solid#D6BF40;
+					cursor: help;
+					border-bottom: 2px dotted #D6BF40;
 					color: #D6BF40;
 					margin:
-						calc( var(--padding-critical-x) * 3 )
-						calc( var(--padding-critical-x) * 3 )
+						calc( var(--padding-critical-x) * 2 )
+						calc( var(--padding-critical-x) * 2 )
 					;
 					float: right;
 				}
 
 				/* Latest Links */
 				.article-link {
+					padding: calc( var(--padding-critical-y) * 1 ) var(--padding-critical-x);
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					border-top: 1px solid var(--color-semi-space);
+					border-bottom: 1px solid var(--color-jet);
 
 					:last-child {
 						border-bottom: none;
 					}
 
-					display: flex;
-					justify-content: space-between;
-					align-items: center;
-					padding: var(--padding-critical-y) var(--padding-critical-x);
-					border-top: 1px solid var(--color-semi-space);
-					border-bottom: 1px solid var(--color-jet);
-
 					.date {
 						text-align: right;
 						min-width: 40%;
+						color: var(--color-white-ash);
 					}
 				}
 			} /* .content */
@@ -466,7 +478,7 @@ html {
 
 					/* Post Header */
 					> header {
-						padding: var(--padding-critical-y) var(--padding-critical-x);
+						padding: calc( var(--padding-critical-y) * 2 ) calc( var(--padding-critical-x) * 1 );
 						border-bottom: 1px solid var(--color-jet);
 
 						h1 {
@@ -489,7 +501,7 @@ html {
 							margin: 0;
 
 							li {
-								padding: calc( var(--padding-critical-y) / 2 ) var(--padding-critical-x);
+								padding: calc( var(--padding-critical-y) * 1 ) var(--padding-critical-x);
 								border-top: 1px solid var(--color-semi-space);
 								border-bottom: 1px solid var(--color-jet);
 								justify-content: space-between;

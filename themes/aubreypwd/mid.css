@@ -110,7 +110,7 @@ html {
 
 						/* Post Headers - Except first h1 - Layout */
 						h1:not(:first-child), h2 {
-							font-size: 30px;
+							font-size: 27px;
 						}
 
 						/* All Media */
@@ -136,6 +136,14 @@ html {
 				} /* article */
 
 				/* Outside of the content */
+
+				/* Sticky Badge */
+				.sticky {
+					margin:
+						calc( var(--padding-critical-x) * 3 )
+						calc( var(--padding-critical-x) * 3 )
+					;
+				}
 
 				/* Latest Links */
 				.article-link {
