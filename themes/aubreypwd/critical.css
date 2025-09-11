@@ -291,7 +291,6 @@ html {
 							max-width: 100%;
 							height: auto;
 							border-radius: 5px;
-							border: 1px solid var(--color-semi-space);
 
 							&.aligncenter,
 							&.alignright,
@@ -314,6 +313,12 @@ html {
 							img {
 								margin: 0 auto calc( var(--padding-critical-y) / 2 ) auto;
 							}
+						}
+
+						/* Isolated Images */
+						img,
+						video {
+							border: 1px solid var(--color-semi-space);
 						}
 
 						/* Videos */
