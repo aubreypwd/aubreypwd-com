@@ -1,10 +1,6 @@
+/* Mozarts Ghost */
 html {
-
 	body {
-
-		border-radius: 10px;
-		border: 1px solid var(--color-black);
-
 		a.mozarts-ghost {
 
 			display: block;
@@ -24,27 +20,39 @@ html {
 				color: var(--color-electric-purple);
 			}
 		}
+	}
+}
 
+/* Layout */
+html {
+	body {
+		border-radius: 10px;
+		border: 1px solid var(--color-black);
+
+		/* Main Header */
 		> header {
 
+			/* Profile in the header */
 			.profile {
 
+				/* Gravatar */
 				img {
 					margin-right: var(--padding-critical-x);
 				}
 
-				.information h1 {
+				/* Site Information */
+				.information {
 
-					font-size: 72px;
-					line-height: 72px;
-
-					span {
-						display: inline;
+					/* Site Title */
+					h1 {
+						font-size: 72px;
+						line-height: 72px;
 					}
-				}
 
-				.information p {
-					margin-top: calc( var(--padding-critical-y) / 2 );
+					/* Site Description */
+					p {
+						margin-top: calc( var(--padding-critical-y) / 2 );
+					}
 				}
 			}
 		}

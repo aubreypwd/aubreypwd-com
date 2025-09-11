@@ -2,67 +2,49 @@
 	--mid-padding-multiplier: 2;
 }
 
+/* Layout */
 html {
-
 	body {
 
-		/* All posts page */
-		&.page-id-243 {
-
-			main {
-
-				> .content {
-					article {
-
-						padding: 0;
-
-						header {
-							padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
-						}
-
-						ul {
-
-							li {
-								padding: var(--padding-critical-y ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
-							}
-						}
-					}
-				}
-			}
-		}
-
+		/* Main Header */
 		> header {
 
-			/* Profile */
+			/* Profile in the header */
 			.profile {
-
 				text-align: left;
 
 				padding:
 					var(--padding-critical-y)
 					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) )
 					calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) )
-					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+					calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) )
+				;
 
-				.information h1,
-				.information p {
-					padding:
-						calc( var(--padding-critical-y) / 2 )
-						calc( var(--padding-critical-y) * 2 ) 0 0;
+				.information {
+
+					/* Both site title and description */
+					h1,
+					p {
+						padding:
+							calc( var(--padding-critical-y) / 2 )
+							calc( var(--padding-critical-y) * 2 ) 0 0;
+					}
+
+					/* Site Title */
+					h1 {
+						font-size: 58px;
+						display: block;
+						padding-left: calc( var(--padding-critical-y) / 4 );
+					}
+
+					/* Description */
+					p {
+						font-size: 17px;
+						line-height: 25px;
+					}
 				}
 
-				.information h1 {
-
-					font-size: 58px;
-					display: block;
-					padding-left: calc( var(--padding-critical-y) / 4 );
-				}
-
-				.information p {
-					font-size: 17px;
-					line-height: 25px;
-				}
-
+				/* Gravatar */
 				img {
 					display: inline-block;
 					min-height: 110px;
@@ -73,100 +55,132 @@ html {
 			}
 		}
 
+		/* Main Header & Footer */
 		> header,
 		> footer {
-
 			nav {
-
 				> ul {
-
 					padding: 0 calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) );
 					justify-content: left;
 				}
 			}
 		}
 
-		/* Main Content */
+		/* Main Content Wrapper */
 		main {
-			.content {
 
-				/* Posts */
+			/* Main Content */
+			> .content {
+
+				/* All Posts */
 				article {
 
+					/* Footer */
 					> footer {
 						padding:
 							calc( var(--padding-critical-y) * 2 )
 							calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
-							calc( var(--padding-critical-y) * 3 );
+							calc( var(--padding-critical-y) * 3 )
+						;
 					}
 
+					/* Header */
 					> header {
-
 						h1 {
 							font-size: 36px;
 							line-height: 56px;
 							text-align: left;
 							font-weight: 300;
-
 							margin-top: calc( var(--padding-critical-y) / 2 );
 							margin-bottom: 0;
-
 							padding:
 								calc( var(--padding-critical-y) * var(--mid-padding-multiplier ) )
-								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) );
+								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
+							;
 						}
 					}
 
+					/* All Post Content */
 					.article-content {
+						padding:
+							calc( calc( var(--padding-critical-y) * 1.5 ) * var(--mid-padding-multiplier) )
+							calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
+							0
+						;
 
-							padding:
-								calc( calc( var(--padding-critical-y) * 1.5 ) * var(--mid-padding-multiplier) )
-								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
-								0;
+						/* Post Headers - Except first h1 - Layout */
+						h1:not(:first-child), h2 {
+							font-size: 30px;
+						}
 
+						/* All Media */
+						img, picture, figure, video {
 
-							/* Bigger headers */
-							h1:not(:first-child),
-							h2 {
-								font-size: 30px;
+							&.aligncenter {
+								margin-left: auto;
+								margin-right: auto;
+								display: block;
 							}
 
-							img,
-							picture,
-							figure {
-
-								&.aligncenter {
-
-									margin-left: auto;
-									margin-right: auto;
-									display: block;
-								}
-
-								&.alignright {
-
-									float: right;
-									margin: var(--padding-critical-x) 0 var(--padding-critical-x) var(--padding-critical-x);
-								}
-
-								&.alignleft {
-
-									float: left;
-									margin: var(--padding-critical-x) var(--padding-critical-x) var(--padding-critical-x) 0;
-								}
+							&.alignright {
+								float: right;
+								margin: var(--padding-critical-x) 0 var(--padding-critical-x) var(--padding-critical-x);
 							}
+
+							&.alignleft {
+								float: left;
+								margin: var(--padding-critical-x) var(--padding-critical-x) var(--padding-critical-x) 0;
+							}
+						}
 					}
-				}
+				} /* article */
 
+				/* Outside of the content */
+
+				/* Latest Links */
 				.article-link {
 					padding: var(--padding-critical-y ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
 				}
 			}
-		}
+		} /* main */
 
+		/* Main Footer */
 		footer {
-
 			border-bottom-right-radius: 10px;
 			border-bottom-left-radius: 10px;
+		}
+	}
+}
+
+/* All posts page */
+html {
+	body.page-id-243 {
+
+		/* Main Content Wrapper */
+		main {
+
+			/* Main Content */
+			> .content {
+
+				/* All Posts */
+				> article {
+
+					> header {
+						padding: calc( var(--padding-critical-y) * var( --mid-padding-multiplier ) ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+					}
+
+					/* All Post Content */
+					.article-content {
+
+						/* Post Listings */
+						.display-posts-listing {
+							li {
+								padding: var(--padding-critical-y ) calc( var(--padding-critical-x) * var( --mid-padding-multiplier ) );
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 }
