@@ -131,6 +131,7 @@ html {
 
 				/* Site Information */
 				.information {
+					width: 100%;
 
 					/* Site Title */
 					h1 {
@@ -145,6 +146,7 @@ html {
 
 					/* Site Description */
 					p {
+						display: none;
 						color: var(--color-white-ash);
 						font-size: 15px;
 						line-height: 20px;
