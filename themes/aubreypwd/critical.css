@@ -145,9 +145,11 @@ html {
 
 					/* Site Description */
 					p {
-						display: none;
+						/* display: none; */
 						color: var(--color-white-ash);
 						font-size: 15px;
+						font-style: italic;
+						opacity: 0.8;
 						line-height: 20px;
 						margin-top: calc( var(--padding-critical-x) * 2 );
 					}
