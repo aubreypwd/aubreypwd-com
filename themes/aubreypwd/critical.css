@@ -409,6 +409,7 @@ html {
 					align-items: center;
 					border-top: 1px solid var(--color-semi-space);
 					border-bottom: 1px solid var(--color-jet);
+					content-visibility: auto;
 
 					:last-child {
 						border-bottom: none;

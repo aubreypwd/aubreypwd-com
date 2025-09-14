@@ -34,6 +34,13 @@ namespace aubreypwd\theme;
 	-->
 
 	<head>
+
+		<!-- Preconnect/Preload -->
+		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 110 ) ); ?>">
+		<link rel="preconnect" href="https://ik.imagekit.io">
+		<link rel="preconnect" href="https://www.youtube-nocookie.com" fetchpriority="low">
+
+		<!-- Speculation Rules -->
 		<script type="speculationrules">
 			{
 				"prerender": [
@@ -57,11 +64,6 @@ namespace aubreypwd\theme;
 			}
 		</script>
 
-		<!-- Preconnect -->
-		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 177 ) ); ?>">
-		<link rel="preconnect" href="https://ik.imagekit.io">
-		<link rel="preconnect" href="https://www.youtube-nocookie.com" fetchpriority="low">
-
 		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
 
 		<!-- Meta -->
@@ -70,14 +72,31 @@ namespace aubreypwd\theme;
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="<?php bloginfo( 'charset' ); ?>">
 
-		<!-- Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-
 		<!-- Critical & Mobile CSS -->
 		<style>
 			<?php echo file_get_contents( sprintf( '%s/critical.css', __DIR__ ) ); ?>
+
+			@font-face {
+				font-family: 'Instrument Serif';
+				src:
+					url('<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), '/fonts/InstrumentSerif-Regular.woff' ); ?>') format('woff'),
+					url('<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), '/fonts/InstrumentSerif-Regular.woff' ); ?>') format('truetype')
+				;
+				font-weight: 400;
+				font-style: normal;
+				font-display: swap;
+			}
+
+			@font-face {
+				font-family: 'Instrument Serif';
+				src:
+					url('<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), '/fonts/InstrumentSerif-Italic.woff' ); ?>') format('woff'),
+					url('<?php echo sprintf( '%s/%s', get_stylesheet_directory_uri(), '/fonts/InstrumentSerif-Italic.ttf' ); ?>') format('truetype')
+				;
+				font-weight: 400;
+				font-style: italic;
+				font-display: swap;
+			}
 		</style>
 
 		<!-- Non-critical CSS -->
