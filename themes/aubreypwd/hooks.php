@@ -4,6 +4,47 @@ namespace aubreypwd\theme;
 
 require_once 'functions.php';
 
+// Hide anything slug-related for tags.
+add_action( 'admin_head', function() {
+	?>
+
+	<style>
+		.column-slug,
+		th.column-slug,
+		td.slug {
+			display: none !important;
+		}
+
+		/* Hide the slug field on add/edit tag forms */
+		.form-field.term-slug-wrap,
+		#slug,
+		label[for="slug"] {
+			display: none !important;
+		}
+	</style>
+
+	<?php
+} );
+
+// Force tag slugs to use their term_id instead of generated slugs for the slug.
+add_action( 'created_post_tag', function( $term_id ) {
+
+	// Get the term object.
+	$term = get_term( $term_id, 'post_tag' );
+
+	// If term exists and slug isn't already numeric, update it.
+	if ( $term && $term->slug !== (string) $term_id ) {
+
+		wp_update_term(
+			$term_id,
+			'post_tag',
+			[
+				'slug' => (string) $term_id,
+			]
+		);
+	}
+}, 20 );
+
 // Make sure we know if the latest post is being displayed.
 add_action( 'body_class', function( $classes ) {
 
