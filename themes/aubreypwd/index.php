@@ -148,10 +148,20 @@ namespace aubreypwd\theme;
 			aria-label="<?php echo esc_attr__( 'Main content', 'aubreypwd' ); ?>">
 
 			<div class="content">
+				<?php if ( is_tag() || is_home() ) : ?>
 
-				<?php if ( is_home() ) : ?>
+					<article role="banner">
+						<?php if ( is_tag() ) : ?>
+							<header>
+								<h1 class="<?php echo ( tag_description() ) ? 'has-desc' : ''; ?>"><?php echo single_tag_title(); ?></h1>
+								<?php if ( tag_description() ) : ?>
+									<?php echo tag_description(); ?>
+								<?php endif; ?>
+							</header>
+						<?php endif; ?>
+					</article>
 
-					<!-- Blog page -->
+					<!-- Blog page (or tag page) -->
 					<?php if ( have_posts() ) : ?>
 						<?php while ( have_posts() ) : the_post(); ?>
 
@@ -175,18 +185,17 @@ namespace aubreypwd\theme;
 									</div>
 
 									<footer>
-										<p class="date">
-											<?php echo get_the_date(); ?>
-										</p>
+										<?php the_tags( '<p class="tags">', ' ', '</p>' ); ?>
+										<p class="date"><?php echo get_the_date(); ?></p>
 									</footer>
 								</article>
 
-							<?php else : ?>
+								<?php else : ?>
 
-								<!-- Show the other posts as links to their single page -->
-								<div class="article-link">
-									<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
-									<span class="date"><?php echo get_the_date(); ?></span>
+									<!-- Show the other posts as links to their single page -->
+									<div class="article-link">
+										<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
+										<span class="date"><?php echo get_the_date(); ?></span>
 								</div>
 							<?php endif; ?>
 
@@ -212,9 +221,8 @@ namespace aubreypwd\theme;
 						<?php if ( ! is_page() ) : ?>
 
 							<footer>
-								<p class="date">
-									<?php echo get_the_date(); ?>
-								</p>
+								<?php the_tags( '<p class="tags">', ' ', '</p>' ); ?>
+								<p class="date"><?php echo get_the_date(); ?></p>
 							</footer>
 						<?php endif; ?>
 					</article>

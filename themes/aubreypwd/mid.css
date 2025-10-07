@@ -98,6 +98,15 @@ html {
 								calc( var(--padding-critical-x) * var(--mid-padding-multiplier) )
 							;
 						}
+
+						p {
+
+							padding:
+								calc( var(--padding-critical-y) * 1 )
+								calc( var(--padding-critical-x) * 2 )
+								calc( var(--padding-critical-y) * 2.5 )
+							;
+						}
 					}
 
 					/* All Post Content */

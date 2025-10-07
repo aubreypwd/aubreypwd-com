@@ -1,4 +1,4 @@
-<?php
+<?php  // phpcs:disable
 
 namespace aubreypwd\theme;
 
@@ -7,13 +7,13 @@ require_once 'hooks.php';
 // Is the current post the latest post?
 function is_latest_post() {
 
-	static $sticky_shown = false;
-
-	if ( $sticky_shown ) {
+	if ( is_archive() ) {
 		return false;
 	}
 
-	if ( ! in_the_loop() || ! is_main_query() ) {
+	static $sticky_shown = false;
+
+	if ( $sticky_shown ) {
 		return false;
 	}
 

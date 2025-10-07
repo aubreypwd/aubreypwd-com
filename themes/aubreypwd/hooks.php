@@ -2,6 +2,45 @@
 
 namespace aubreypwd\theme;
 
+require_once 'functions.php';
+
+// Make sure we know if the latest post is being displayed.
+add_action( 'body_class', function( $classes ) {
+
+	if ( ! is_latest_post() ) {
+		return $classes;
+	}
+
+	return array_merge(
+		$classes,
+		[
+			'latest-post',
+		]
+	);
+} );
+
+// Disable (404) all archive pages except tags.
+add_action( 'template_redirect', function() {
+
+	// Allow tag archives
+	if ( is_tag() ) {
+		return;
+	}
+
+	// Block all other archives: category, date, author, post type, etc.
+	if ( is_archive() ) {
+
+		global $wp_query;
+
+		$wp_query->set_404();
+
+		status_header( 404 );
+		nocache_headers();
+
+		exit;
+	}
+} );
+
 // Use /page|post-<id>.html permalinks instead of ?p=<id> and ?page_id=<id>.
 add_action( 'template_redirect', function() {
 
@@ -87,7 +126,6 @@ add_action( 'init', function() {
 
 	// Remove these taxonomies.
 	unregister_taxonomy_for_object_type( 'category', 'post' );
-	unregister_taxonomy_for_object_type( 'post_tag', 'post' );
 	unregister_taxonomy_for_object_type( 'media_category', 'attachment' );
 	unregister_taxonomy_for_object_type( 'media_post_tag', 'attachment' );
 
@@ -96,7 +134,6 @@ add_action( 'init', function() {
 // Remove category and tag meta boxes.
 add_action( 'admin_menu', function() {
 	remove_meta_box( 'categorydiv', 'post', 'side' );
-	remove_meta_box( 'tagsdiv-post_tag', 'post', 'side' );
 } );
 
 // Remove the main Dashboard page from the menu.
