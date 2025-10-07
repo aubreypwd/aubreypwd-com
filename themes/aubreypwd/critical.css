@@ -220,7 +220,7 @@ html {
 								padding-bottom: calc( var(--padding-critical-x ) / 1 );
 							}
 
-							&::before {
+							&.has-desc::before {
 								content: "#";
 							}
 						}
