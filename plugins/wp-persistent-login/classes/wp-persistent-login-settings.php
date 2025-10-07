@@ -70,8 +70,8 @@ class WP_Persistent_Login_Settings {
 		if( $hook !== 'users_page_wp-persistent-login' ) {
 			return;
 		}
-		wp_enqueue_script( 'wppl_admin_controls', WPPL_PLUGIN_URL . '/js/admin-controls.js', array('jquery'), '1.0' );
-		wp_enqueue_style( 'wppl_dashboard_styles', WPPL_PLUGIN_URL . '/css/dashboard.css', array(), '1.0' );
+		wp_enqueue_script( 'wppl_admin_controls', WPPL_PLUGIN_URL . '/js/admin-controls.js', array('jquery'), '1.1' );
+		wp_enqueue_style( 'wppl_dashboard_styles', WPPL_PLUGIN_URL . '/css/dashboard.css', array(), '1.1' );
         
         // Add nonce for AJAX requests
         wp_localize_script( 'wppl_admin_controls', 'wppl_nonce', wp_create_nonce( 'wppl_feature_toggle_nonce' ) );
@@ -97,13 +97,15 @@ class WP_Persistent_Login_Settings {
 		}
         
 		// Get current options
-		$options = get_option( 'persistent_login_feature_options', array() );
+		$options = get_option( 'persistent_login_feature_flags', array() );
+        
+		// Debug logging removed (previously wrote to wppl-debug.log)
         
 		// Update option, always as string
 		$options[$option_name] = $enabled;
         
 		// Save updated options
-		$updated = update_option( 'persistent_login_feature_options', $options );
+		$updated = update_option( 'persistent_login_feature_flags', $options );
         
         if ( $updated ) {
             wp_send_json_success( array( 
@@ -811,7 +813,7 @@ Thanks,
 			
 			// updated db version
 			if( $_GET['view'] == 'update' ) {
-				$message = __('WordPress Persistent Login has been updated to the latest database version!', 'wp-persistent-login' );
+				$message = __('Persistent Login has been updated to the latest database version!', 'wp-persistent-login' );
 				$class = 'notice updated';
 				printf( '<div class="%1$s"><p>%2$s</p></div>', esc_attr( $class ), esc_html( $message ) ); 
 			}
@@ -824,7 +826,7 @@ Thanks,
 	
 		<div class="wrap">
 			
-			<h1><?php _e('WordPress Persistent Login', 'wp-persistent-login' ); ?></h1>
+			<h1><?php _e('Persistent Login', 'wp-persistent-login' ); ?></h1>
 			<h2 style="float: left; margin-top: 0;"><?php _e('Free Forever Plan', 'wp-persistent-login' ); ?></h2>
 			
 			<div style="float: right;">
@@ -1177,7 +1179,7 @@ Thanks,
 					<div class="postbox">
 						<div class="inside">
 							<h3 style="margin-top: 1rem; cursor: auto;">Want a new feature?</h3>
-							<p>If you'd like to see a new feature on WordPress Persistent Login, just request it by clicking the button below and <strong>choose the Feature Request option</strong>.</p>
+							<p>If you'd like to see a new feature on Persistent Login, just request it by clicking the button below and <strong>choose the Feature Request option</strong>.</p>
 							<a href="<?php echo admin_url(); ?>options-general.php?page=wp-persistent-login-contact" class="button">
 								Request a Feature
 							</a>
