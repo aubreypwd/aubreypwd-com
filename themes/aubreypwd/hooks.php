@@ -4,6 +4,25 @@ namespace aubreypwd\theme;
 
 require_once 'functions.php';
 
+// Make sure tags show like categories.
+add_action( 'init', function() {
+
+	// Get the existing post_tag registration.
+	$tag_tax = get_taxonomy( 'post_tag' );
+
+	// Modify its arguments.
+	$tag_tax->hierarchical = true; // Makes the UI use checkboxes like categories.
+	$tag_tax->meta_box_cb  = 'post_categories_meta_box'; // Forces category-style metabox.
+	$tag_tax->rewrite['hierarchical'] = false; // Keep URL structure flat.
+
+	// Re-register the taxonomy with new behavior.
+	register_taxonomy(
+		'post_tag',
+		'post',
+		(array) $tag_tax
+	);
+}, 11 );
+
 // Hide anything slug-related for tags.
 add_action( 'admin_head', function() {
 	?>
