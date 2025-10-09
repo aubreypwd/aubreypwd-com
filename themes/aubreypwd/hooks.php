@@ -4,6 +4,27 @@ namespace aubreypwd\theme;
 
 require_once 'functions.php';
 
+// Make sure we can tell what posts have tags, and what they are tagged with.
+add_action( 'body_class', function( $classes ) {
+
+	$tags = array_map(
+		function( $tag_id ) {
+			return "tagged-{$tag_id}";
+		},
+		wp_get_post_tags( get_the_ID(), [ 'fields' => 'ids' ] )
+	);
+
+	if ( empty( $tags ) ) {
+		return $classes;
+	}
+
+	return array_merge(
+		$classes,
+		$tags,
+		[ 'has-tags' ]
+	);
+} );
+
 // Make sure API changes to sticky posts result in one sticky post.
 add_action(
 	'post_stuck',

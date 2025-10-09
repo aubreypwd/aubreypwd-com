@@ -538,10 +538,20 @@ html {
 	}
 
 	/* Highlight All Posts when any other post is loaded */
-	body:not(.latest-post):not(.tag) {
+	body:not(.latest-post):not(.tag):not(.has-tags) {
 		> header {
 			> nav {
 				li:nth-child(2) {
+					border-bottom: 2px solid var(--color-electric-blue);
+				}
+			}
+		}
+	}
+
+	body.tagged-335 {
+		> header {
+			> nav {
+				li#menu-item-6928 {
 					border-bottom: 2px solid var(--color-electric-blue);
 				}
 			}
