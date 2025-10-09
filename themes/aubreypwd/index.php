@@ -64,7 +64,11 @@ namespace aubreypwd\theme;
 			}
 		</script>
 
-		<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
+		<?php if ( is_tag() ) : ?>
+			<title><?php bloginfo( 'name' ); ?>, <?php echo single_tag_title(); ?></title>
+		<?php else: ?>
+			<title><?php bloginfo( 'name' ); ?>, <?php the_title(); ?></title>
+		<?php endif; ?>
 
 		<!-- Meta -->
 		<meta name="description" content="<?php bloginfo( 'description' ); ?>">
