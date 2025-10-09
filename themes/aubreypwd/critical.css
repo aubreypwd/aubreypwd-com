@@ -14,6 +14,7 @@ progress,sub,sup{vertical-align:baseline}*,::after,::before{box-sizing:border-bo
 	--color-electric-blue: #198CFF;
 	--color-electric-purple: #ED52ED;
 	--color-semi-space: #101010;
+	--color-erie-dark: #1E1E1E;
 
 	/* Spacing */
 	--padding-critical-x: 15px;
@@ -450,12 +451,13 @@ html {
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
+					background-color: var(--color-erie-dark);
 					border-top: 1px solid var(--color-semi-space);
 					border-bottom: 1px solid var(--color-jet);
 					content-visibility: auto;
 
-					:last-child {
-						border-bottom: none;
+					&:last-child {
+						border-bottom: 0;
 					}
 
 					.date {
@@ -578,6 +580,7 @@ html {
 							margin: 0;
 
 							li {
+								background-color: var(--color-erie-dark);
 								padding: calc( var(--padding-critical-y) * 1 ) var(--padding-critical-x);
 								border-top: 1px solid var(--color-semi-space);
 								border-bottom: 1px solid var(--color-jet);

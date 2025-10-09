@@ -150,16 +150,16 @@ namespace aubreypwd\theme;
 			<div class="content">
 				<?php if ( is_tag() || is_home() ) : ?>
 
-					<article role="banner">
-						<?php if ( is_tag() ) : ?>
+					<?php if ( is_tag() ) : ?>
+						<article role="banner">
 							<header>
 								<h1 class="<?php echo ( tag_description() ) ? 'has-desc' : ''; ?>"><?php echo single_tag_title(); ?></h1>
 								<?php if ( tag_description() ) : ?>
 									<?php echo tag_description(); ?>
 								<?php endif; ?>
 							</header>
-						<?php endif; ?>
-					</article>
+						</article>
+					<?php endif; ?>
 
 					<!-- Blog page (or tag page) -->
 					<?php if ( have_posts() ) : ?>
@@ -190,12 +190,12 @@ namespace aubreypwd\theme;
 									</footer>
 								</article>
 
-								<?php else : ?>
+							<?php else : ?>
 
-									<!-- Show the other posts as links to their single page -->
-									<div class="article-link">
-										<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
-										<span class="date"><?php echo get_the_date(); ?></span>
+								<!-- Show the other posts as links to their single page -->
+								<div class="article-link">
+									<a href="<?php the_permalink(); ?>" title="<?php echo esc_attr( get_the_excerpt() ); ?>"><?php the_title(); ?></a>
+									<span class="date"><?php echo get_the_date(); ?></span>
 								</div>
 							<?php endif; ?>
 
