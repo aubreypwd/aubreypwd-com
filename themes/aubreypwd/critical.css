@@ -595,6 +595,7 @@ html {
 								.date {
 									text-align: right;
 									min-width: 40%;
+									color: var(--color-white-ash);
 								}
 							}
 						} /* ul */
