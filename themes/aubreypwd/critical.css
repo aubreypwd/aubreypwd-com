@@ -66,6 +66,7 @@ html {
 
 			/* All Navigations */
 			> nav {
+				font-size: 13.5px;
 				white-space: nowrap;
 				overflow: auto;
 				scrollbar-width: none;
