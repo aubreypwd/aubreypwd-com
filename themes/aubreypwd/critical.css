@@ -436,13 +436,18 @@ html {
 				/* Sticky Badge */
 				.sticky {
 					cursor: help;
-					border-bottom: 2px dotted #D6BF40;
-					color: #D6BF40;
+					border-bottom: 2px dotted #d6bf4088;
+					color: #d6bf4088;
+					float: right;
+
 					margin:
 						calc( var(--padding-critical-x) * 2 )
 						calc( var(--padding-critical-x) * 2 )
 					;
-					float: right;
+
+					&:hover {
+						color: #d6bf40;
+					}
 				}
 
 				/* Latest Links */

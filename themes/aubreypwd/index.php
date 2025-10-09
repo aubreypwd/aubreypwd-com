@@ -171,8 +171,8 @@ namespace aubreypwd\theme;
 								<article>
 									<header>
 
-										<?php if ( is_sticky() && 1 == 2 ) : ?>
-											<span class="sticky" title="<?php esc_html_e( 'This post is pinned, it may not be the latest post.', 'aubreypwd' ); ?>"><?php esc_html_e( 'Pinned', 'aubreypwd' ); ?></span>
+										<?php if ( false && is_sticky() ) : ?>
+											<span class="sticky" title="<?php esc_html_e( 'This post is featured, it may not be the most recent. Scroll down for more recent posts.', 'aubreypwd' ); ?>"><?php esc_html_e( 'Featured', 'aubreypwd' ); ?></span>
 										<?php endif; ?>
 
 										<a href="<?php the_permalink(); ?>">
