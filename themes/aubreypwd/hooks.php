@@ -4,6 +4,32 @@ namespace aubreypwd\theme;
 
 require_once 'functions.php';
 
+// Make sure API changes to sticky posts result in one sticky post.
+add_action(
+	'post_stuck',
+	function( $post_id ) {
+		update_option( 'sticky_posts', [ (int) $post_id ] );
+	},
+	999
+);
+
+// Make sure that sticky posts I set are sticky.
+add_action(
+	'save_post',
+	function( $post_id ) {
+
+		if ( wp_is_post_autosave( $post_id ) || wp_is_post_revision( $post_id ) ) {
+			return;
+		}
+
+		// Make sure sticky posts are just the one we just saved.
+		if ( isset( $_POST['sticky'] ) && 'sticky' === $_POST['sticky'] ) {
+			update_option( 'sticky_posts', [ (int) $post_id ] );
+		}
+	},
+	999
+);
+
 // Make sure tags show like categories.
 add_action( 'init', function() {
 

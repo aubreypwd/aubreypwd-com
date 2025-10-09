@@ -11,20 +11,15 @@ function is_latest_post() {
 		return false;
 	}
 
-	static $sticky_shown = false;
-
-	if ( $sticky_shown ) {
-		return false;
-	}
-
-	if ( is_sticky() ) {
-
-		$sticky_shown = true;
-
-		return true;
-	}
-
 	global $post; // Current post in the loop.
+
+	$sticky_posts = get_option( 'sticky_posts', [] );
+
+	if ( ! empty( $sticky_posts ) ) {
+
+		// We have sticky post, show that instead.
+		return in_array( $post->ID, $sticky_posts, true );
+	}
 
 	// Get the latest post (ID) in the DB.
 	$latest_post = get_posts(

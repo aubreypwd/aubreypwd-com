@@ -171,7 +171,7 @@ namespace aubreypwd\theme;
 								<article>
 									<header>
 
-										<?php if ( is_sticky() ) : ?>
+										<?php if ( is_sticky() && 1 == 2 ) : ?>
 											<span class="sticky" title="<?php esc_html_e( 'This post is pinned, it may not be the latest post.', 'aubreypwd' ); ?>"><?php esc_html_e( 'Pinned', 'aubreypwd' ); ?></span>
 										<?php endif; ?>
 
