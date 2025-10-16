@@ -547,7 +547,7 @@ html {
 	}
 
 	/* Highlight All Posts when any other post is loaded */
-	body:not(.latest-post):not(.tag):not(.has-tags) {
+	body:not(.latest-post):not(.tag):not(.has-tags):not(.page) {
 		> header {
 			> nav {
 				li:nth-child(2) {
