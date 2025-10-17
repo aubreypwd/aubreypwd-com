@@ -11,6 +11,10 @@ function is_latest_post() {
 		return false;
 	}
 
+	if ( is_page() ) {
+		return false;
+	}
+
 	global $post; // Current post in the loop.
 
 	$sticky_posts = get_option( 'sticky_posts', [] );
@@ -18,7 +22,7 @@ function is_latest_post() {
 	if ( ! empty( $sticky_posts ) ) {
 
 		// We have sticky post, show that instead.
-		return in_array( $post->ID, $sticky_posts, true );
+		return in_array( $post->ID ?? 0, $sticky_posts, true );
 	}
 
 	// Get the latest post (ID) in the DB.
