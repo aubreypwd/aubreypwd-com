@@ -3,7 +3,7 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^hire/?$ /index.php??page_id=6964 [L,QSA]
+RewriteRule ^hire/?$ /index.php?page_id=6964 [L,QSA]
 RewriteRule ^freelance/?$ /index.php?page_id=6941 [L,QSA]
 RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
 RewriteRule ^pages/([0-9]+)\.html$ index.php?page_id=$1 [L]
