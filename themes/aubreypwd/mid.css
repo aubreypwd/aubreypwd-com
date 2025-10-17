@@ -117,12 +117,6 @@ html {
 							0
 						;
 
-						/* Post Headers - Except first h1 - Layout */
-						h1:not(:first-child), h2 {
-							font-size: 29px;
-							line-height: 34px;
-						}
-
 						/* All Media */
 						img, picture, figure, video {
 

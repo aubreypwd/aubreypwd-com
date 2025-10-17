@@ -263,30 +263,35 @@ html {
 						}
 
 						/* Post Headers - Except first h1 - Layout */
-						h1:not(:first-child), h2, h3, h4, h5, h6 {
+						h1:not(:first-child),
+						h2, h3, h4, h5, h6 {
 							color: color-mix(in srgb, var(--color-electric-blue) 90%, transparent);
 							font-family: 'Instrument Serif';
 							font-weight: 300;
-							display: inline-block;
+							display: block;
 						}
 
 						/* Make all first h1's and h2's the same font-size. */
-						h1:not(:first-child), h2 {
-							font-size: 24px;
-							line-height: 30px;
-						}
-
-						/* All secondary headings that are after the first one should be spaced differently */
-						h1:not(:first-child), h2:not(:first-child) {
-							margin-bottom: calc( var(--padding-critical-x) / 1.5 );
-							margin-top: calc( var(--padding-critical-x) * 3 );
+						h1:not(:first-child),
+						h2 {
+							font-size: 38px;
+							line-height: 48px;
 						}
 
 						/* All other headers after first h1 and h2's */
 						h3, h4, h5, h6 {
 							padding-bottom: 0;
 							margin-bottom: 0;
-							font-size: 20px;
+							font-size: 30px;
+							line-height: 40px;
+							color: var(--color-white-ash);
+						}
+
+						/* All secondary headings that are after the first one should be spaced differently */
+						h1:not(:first-child),
+						h2:not(:first-child) {
+							margin-bottom: calc( var(--padding-critical-x) / 1.5 );
+							margin-top: calc( var(--padding-critical-x) * 3 );
 						}
 
 						/* Formatting tags */
