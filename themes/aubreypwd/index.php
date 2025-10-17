@@ -228,6 +228,10 @@ namespace aubreypwd\theme;
 								<?php the_tags( '<p class="tags">', ' ', '</p>' ); ?>
 								<p class="date"><?php echo get_the_date(); ?></p>
 							</footer>
+						<?php elseif ( is_page() ) : ?>
+							<footer>
+								<p class="date"><?php echo get_the_date(); ?></p>
+							</footer>
 						<?php endif; ?>
 					</article>
 
