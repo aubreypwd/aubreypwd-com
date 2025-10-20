@@ -39,15 +39,8 @@ function is_latest_post() {
 }
 
 // My gravatar.
-function my_avatar( int $size = 150 ) {
+function my_avatar( int $size = 750 ) {
 
 	// Yes, serve it up via imagekit so we get super small version.
-	return str_replace(
-		[
-			'://aubreypwd.com/wp-content/uploads/',
-			sprintf( '://%s/wp-content/uploads/', $_SERVER['HTTP_HOST'] ?? 'aubreypwd.com' ),
-		],
-		"://ik.imagekit.io/aubreypwd/tr:f-avif,w-{$size},h-{$size}/",
-		get_site_icon_url()
-	);
+	return get_site_icon_url( $size );
 }
