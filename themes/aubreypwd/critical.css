@@ -129,6 +129,8 @@ html {
 					border-radius: 50%;
 					border: 2px solid var(--color-white);
 					display: none;
+					width: 110px;
+					height: 110px;
 				}
 
 				/* Site Information */
