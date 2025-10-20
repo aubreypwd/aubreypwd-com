@@ -36,7 +36,7 @@ namespace aubreypwd\theme;
 	<head>
 
 		<!-- Preconnect/Preload -->
-		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 108 ) ); ?>">
+		<link rel="preconnect" href="<?php echo esc_attr( my_avatar( 150 ) ); ?>">
 		<link rel="preconnect" href="https://ik.imagekit.io">
 		<link rel="preconnect" href="https://www.youtube-nocookie.com" fetchpriority="low">
 
@@ -138,7 +138,7 @@ namespace aubreypwd\theme;
 
 				<!-- Gravatar, should be preloaded -->
 				<img
-					src="<?php echo esc_attr( my_avatar( 108 ) ); ?>"
+					src="<?php echo esc_attr( my_avatar( 150 ) ); ?>"
 					alt="<?php echo esc_attr__( 'Aubrey Portwood', 'aubreypwd' ); ?>"
 					fetchpriority="high"
 					referrerpolicy="no-referrer">

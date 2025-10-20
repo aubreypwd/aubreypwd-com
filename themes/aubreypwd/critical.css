@@ -126,7 +126,8 @@ html {
 
 				/* Gravatar */
 				img {
-					border-radius: 20px;
+					border-radius: 50%;
+					border: 2px solid var(--color-white);
 					display: none;
 				}
 
