@@ -3,7 +3,6 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^hire/?$ /index.php?page_id=6964 [L,QSA]
 RewriteRule ^how-i-work/?$ /index.php?page_id=6964 [L,QSA]
 RewriteRule ^freelance/?$ /index.php?page_id=6941 [L,QSA]
 RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
@@ -18,3 +17,4 @@ RewriteRule . /index.php [L]
 </IfModule>
 
 Redirect 301 /chatbot https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
+Redirect 301 /hire https://www.fiverr.com/aubreypwd?public_mode=true
