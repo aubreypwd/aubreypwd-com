@@ -139,10 +139,10 @@ html {
 
 					/* Site Title */
 					h1 {
-						margin: var(--padding-critical-x) 0;
+						margin: var(--padding-critical-x) 0 0;
 						font-family: 'Instrument Serif';
 						font-weight: 500;
-						font-style: italic;
+						/* font-style: italic; */
 						font-size: 52px;
 						color: var(--color-electric-blue);
 					}
