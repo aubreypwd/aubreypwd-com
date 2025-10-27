@@ -121,7 +121,7 @@ html {
 				align-items: center;
 				align-content: center;
 				justify-content: center;
-				padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-y);
+				padding: calc( var(--padding-critical-y) * 2 ) var(--padding-critical-y) calc( var(--padding-critical-y) * 1 );
 				gap: calc( var(--padding-critical-x) / 2 );
 
 				/* Gravatar */
