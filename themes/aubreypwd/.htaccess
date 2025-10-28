@@ -5,13 +5,6 @@ RewriteEngine On
 RewriteBase /
 
 ### ─────────────────────────────
-### Manual Pretty URL Rewrites
-### ─────────────────────────────
-
-# Rewrite /posts/index.html to actual static file
-RewriteRule ^posts/index\.html$ /index.php?page_id=243 [L]
-
-### ─────────────────────────────
 ### Old Tag Query Redirects
 ### ─────────────────────────────
 
@@ -27,6 +20,13 @@ RewriteRule ^$ https://aubreypwd.com/tags/career-2025.html? [R=301,L,QSD]
 
 RewriteCond %{QUERY_STRING} ^tag=335$
 RewriteRule ^$ https://aubreypwd.com/tags/wp-problems.html? [R=301,L,QSD]
+
+### ─────────────────────────────
+### Manual Pretty URL Rewrites
+### ─────────────────────────────
+
+# Rewrite /posts/index.html to actual static file
+RewriteRule ^posts/index\.html$ /index.php?page_id=243 [L]
 
 ### ─────────────────────────────
 ### Standard WordPress Handling
