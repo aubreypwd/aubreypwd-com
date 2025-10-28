@@ -13,9 +13,12 @@ RewriteRule ^posts/index\.html$ index.php?page_id=243 [L]
 RewriteRule ^index\.html$ index.php [L]
 
 # Re-write some old tags as the new ones.
-RewriteRule ^$ https://aubreypwd.com/tags/freelancing.html? [R=301,L,QSD] RewriteCond %{QUERY_STRING} ^tag=333$
-RewriteRule ^$ https://aubreypwd.com/tags/ai.html? [R=301,L,QSD] RewriteCond %{QUERY_STRING} ^tag=336$
-RewriteRule ^$ https://aubreypwd.com/tags/career2025.html? [R=301,L,QSD] RewriteCond %{QUERY_STRING} ^tag=334$
+RewriteCond %{QUERY_STRING} ^tag=333$
+RewriteRule ^$ https://aubreypwd.com/tags/freelancing.html? [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^tag=336$
+RewriteRule ^$ https://aubreypwd.com/tags/ai.html? [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^tag=334$
+RewriteRule ^$ https://aubreypwd.com/tags/career2025.html? [R=301,L,QSD]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
