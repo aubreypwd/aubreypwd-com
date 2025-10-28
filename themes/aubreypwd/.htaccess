@@ -5,6 +5,13 @@ RewriteEngine On
 RewriteBase /
 
 ### ─────────────────────────────
+### Old-style .html post/page links (don't delete).
+### ─────────────────────────────
+
+RewriteRule ^posts/([0-9]+)\.html$ /index.php?p=$1 [L]
+RewriteRule ^pages/([0-9]+)\.html$ /index.php?page_id=$1 [L]
+
+### ─────────────────────────────
 ### Old Tag Query Redirects
 ### ─────────────────────────────
 
