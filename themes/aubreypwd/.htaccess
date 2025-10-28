@@ -26,7 +26,7 @@ RewriteRule ^$ https://aubreypwd.com/tags/wp-problems.html? [R=301,L,QSD]
 ### ─────────────────────────────
 
 # Rewrite /posts/index.html to actual static file
-RewriteRule ^posts/index\.html$ /index.php?page_id=243 [L]
+RewriteRule ^posts/index\.html$ index.php?page_id=243 [L]
 
 ### ─────────────────────────────
 ### Standard WordPress Handling
