@@ -4,31 +4,53 @@
 RewriteEngine On
 RewriteBase /
 
-# Manual rewrites.
+### ─────────────────────────────
+### Manual Pretty URL Rewrites
+### ─────────────────────────────
+
+# Static pages
 RewriteRule ^how-i-work/?$ /index.php?page_id=6964 [L,QSA]
 RewriteRule ^freelance/?$ /index.php?page_id=6941 [L,QSA]
-RewriteRule ^posts/([0-9]+)\.html$ index.php?p=$1 [L]
-RewriteRule ^pages/([0-9]+)\.html$ index.php?page_id=$1 [L]
-RewriteRule ^posts/index\.html$ index.php?page_id=243 [L]
-RewriteRule ^index\.html$ index.php [L]
 
-# Re-write some old tags as the new ones.
+# Old-style .html post/page links
+RewriteRule ^posts/([0-9]+)\.html$ /index.php?p=$1 [L]
+RewriteRule ^pages/([0-9]+)\.html$ /index.php?page_id=$1 [L]
+RewriteRule ^posts/index\.html$ /index.php?page_id=243 [L]
+RewriteRule ^index\.html$ /index.php [L]
+
+### ─────────────────────────────
+### Old Tag Query Redirects
+### ─────────────────────────────
+
+# Only redirect from homepage with exact tag queries
 RewriteCond %{QUERY_STRING} ^tag=333$
 RewriteRule ^$ https://aubreypwd.com/tags/freelancing.html? [R=301,L,QSD]
+
 RewriteCond %{QUERY_STRING} ^tag=336$
 RewriteRule ^$ https://aubreypwd.com/tags/ai.html? [R=301,L,QSD]
+
 RewriteCond %{QUERY_STRING} ^tag=334$
 RewriteRule ^$ https://aubreypwd.com/tags/career-2025.html? [R=301,L,QSD]
+
 RewriteCond %{QUERY_STRING} ^tag=335$
 RewriteRule ^$ https://aubreypwd.com/tags/wp-problems.html? [R=301,L,QSD]
 
+### ─────────────────────────────
+### Standard WordPress Handling
+### ─────────────────────────────
+
+# Skip rewrite if index.php is requested directly
 RewriteRule ^index\.php$ - [L]
+
+# Route anything else to index.php if not a real file or dir
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
 
-# Manual redirects...
+### ─────────────────────────────
+### Manual Redirects
+### ─────────────────────────────
+
 Redirect 301 /chatbot https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
 Redirect 302 /hire https://www.fiverr.com/aubreypwd?public_mode=true
-
