@@ -9,7 +9,7 @@ RewriteBase /
 ### ─────────────────────────────
 
 # Rewrite /posts/index.html to actual static file
-RewriteRule ^posts/index\.html$ pages/posts.html [L]
+RewriteRule ^posts/index\.html$ /pages/posts.html [L]
 
 ### ─────────────────────────────
 ### Old Tag Query Redirects
