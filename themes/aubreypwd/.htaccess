@@ -8,10 +8,6 @@ RewriteBase /
 ### Manual Pretty URL Rewrites
 ### ─────────────────────────────
 
-# Static pages
-RewriteRule ^how-i-work/?$ pages/how-i-work.html [L]
-RewriteRule ^freelance/?$ pages/freelance.html [L]
-
 # Old-style .html post/page links
 RewriteRule ^posts/([0-9]+)\.html$ /index.php?p=$1 [L]
 RewriteRule ^pages/([0-9]+)\.html$ /index.php?page_id=$1 [L]
@@ -54,3 +50,5 @@ RewriteRule . /index.php [L]
 
 Redirect 301 /chatbot https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
 Redirect 302 /hire https://www.fiverr.com/aubreypwd?public_mode=true
+Redirect 301 /how-i-work /pages/how-i-work.html
+Redirect 301 /freelance/ /pages/freelance.html
