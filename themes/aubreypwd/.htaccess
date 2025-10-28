@@ -8,8 +8,8 @@ RewriteBase /
 ### Manual Pretty URL Rewrites
 ### ─────────────────────────────
 
-# Redirect /posts/index.html to actual static file
-RedirectMatch 301 ^/posts/index\.html$ /pages/posts.html
+# Rewrite /posts/index.html to actual static file
+RewriteRule ^posts/index\.html$ pages/posts.html [L]
 
 ### ─────────────────────────────
 ### Old Tag Query Redirects
