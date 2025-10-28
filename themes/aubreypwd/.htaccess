@@ -18,7 +18,9 @@ RewriteRule ^$ https://aubreypwd.com/tags/freelancing.html? [R=301,L,QSD]
 RewriteCond %{QUERY_STRING} ^tag=336$
 RewriteRule ^$ https://aubreypwd.com/tags/ai.html? [R=301,L,QSD]
 RewriteCond %{QUERY_STRING} ^tag=334$
-RewriteRule ^$ https://aubreypwd.com/tags/career2025.html? [R=301,L,QSD]
+RewriteRule ^$ https://aubreypwd.com/tags/career-2025.html? [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^tag=335$
+RewriteRule ^$ https://aubreypwd.com/tags/wp-problems.html? [R=301,L,QSD]
 
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
