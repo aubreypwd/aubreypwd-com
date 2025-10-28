@@ -506,3 +506,23 @@ add_action( 'template_redirect', function() {
 	wp_redirect( get_permalink( $id ), 301 );
 		exit;
 } );
+
+// Store what URL's go to what Post ID's.
+add_action( 'template_redirect', function() {
+
+	if ( is_home() ) {
+		return;
+	}
+
+	global $post;
+
+	if ( ! is_a( $post, '\WP_Post' ) ) {
+		return;
+	}
+
+	@file_put_contents(
+		sprintf( '%s/requests.urls', untrailingslashit( ABSPATH ) ),
+		sprintf( "%s,%s\n", $_SERVER['REQUEST_URI'], $post->ID ?? -1 ),
+		FILE_APPEND | LOCK_EX
+	);
+} );
