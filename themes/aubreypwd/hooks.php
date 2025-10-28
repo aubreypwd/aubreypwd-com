@@ -419,7 +419,7 @@ add_action( 'init', function() {
 
 	global $wp_rewrite;
 
-	$wp_rewrite->set_permalink_structure( '/%postname%.html' );
+	$wp_rewrite->set_permalink_structure( '/posts/%postname%.html' );
 
 	add_filter( 'post_type_link', function( $url, $post ) {
 
@@ -478,6 +478,7 @@ add_action( 'init', function() {
 
 	// Flush once.
 	flush_rewrite_rules();
+
 	update_option( sprintf( 'aubreypwd/theme/permalinks_flushed/%s', filemtime( __FILE__ ) ), 'flushed' );
 } );
 
@@ -501,6 +502,7 @@ add_action( 'template_redirect', function() {
 		return;
 	}
 
+	// Redirect to the proper URL...
 	wp_redirect( get_permalink( $id ), 301 );
 		exit;
 } );
