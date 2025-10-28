@@ -507,7 +507,7 @@ add_action( 'template_redirect', function() {
 		exit;
 } );
 
-// Store what URL's go to what Post ID's.
+// Log information about each visit.
 add_action( 'template_redirect', function() {
 
 	if ( is_home() ) {
@@ -521,8 +521,18 @@ add_action( 'template_redirect', function() {
 	}
 
 	@file_put_contents(
-		sprintf( '%s/requests.urls', untrailingslashit( ABSPATH ) ),
-		sprintf( "%s,%s\n", $_SERVER['REQUEST_URI'], $post->ID ?? -1 ),
+		sprintf(
+			'%s/requests.%s.urls',
+			untrailingslashit( ABSPATH ),
+			'v2'
+		),
+		sprintf(
+			"%s,%s,%s,%s\n",
+			$post->ID ?? -1,
+			$_SERVER['REQUEST_URI'] ?? '',
+			time(),
+			$_SERVER['REMOTE_ADDR'] ?? ''
+		),
 		FILE_APPEND | LOCK_EX
 	);
 } );
