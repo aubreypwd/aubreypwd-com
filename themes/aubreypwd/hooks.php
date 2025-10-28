@@ -480,3 +480,27 @@ add_action( 'init', function() {
 	flush_rewrite_rules();
 	update_option( sprintf( 'aubreypwd/theme/permalinks_flushed/%s', filemtime( __FILE__ ) ), 'flushed' );
 } );
+
+// Redirect ?p= and ?page_id= to their normal .html URLs.
+add_action( 'template_redirect', function() {
+
+	// Detect ?p= or ?page_id=.
+	$id = isset( $_GET['p'] )
+
+		// ?p=X...
+		? absint( $_GET['p'] )
+
+		// Test for ?page_id=...
+		: (
+			isset( $_GET['page_id'] )
+				? absint( $_GET['page_id'] )
+				: false
+		);
+
+	if ( ! $id ) {
+		return;
+	}
+
+	wp_redirect( get_permalink( $id ), 301 );
+		exit;
+} );
