@@ -70,47 +70,6 @@ add_action( 'init', function() {
 	);
 }, 11 );
 
-// Hide anything slug-related for tags.
-add_action( 'admin_head', function() {
-	?>
-
-	<style>
-		.column-slug,
-		th.column-slug,
-		td.slug {
-			display: none !important;
-		}
-
-		/* Hide the slug field on add/edit tag forms */
-		.form-field.term-slug-wrap,
-		#slug,
-		label[for="slug"] {
-			display: none !important;
-		}
-	</style>
-
-	<?php
-} );
-
-// Force tag slugs to use their term_id instead of generated slugs for the slug.
-add_action( 'created_post_tag', function( $term_id ) {
-
-	// Get the term object.
-	$term = get_term( $term_id, 'post_tag' );
-
-	// If term exists and slug isn't already numeric, update it.
-	if ( $term && $term->slug !== (string) $term_id ) {
-
-		wp_update_term(
-			$term_id,
-			'post_tag',
-			[
-				'slug' => (string) $term_id,
-			]
-		);
-	}
-}, 20 );
-
 // Make sure we know if the latest post is being displayed.
 add_action( 'body_class', function( $classes ) {
 
@@ -148,31 +107,6 @@ add_action( 'template_redirect', function() {
 	}
 } );
 
-// Use /page|post-<id>.html permalinks instead of ?p=<id> and ?page_id=<id>.
-add_action( 'template_redirect', function() {
-
-	return; // Yeah, disabling this for now: it was fun but it's going to get complicated.
-
-	if ( ! isset( $_SERVER['HTTP_HOST'] ) || 'aubreypwd.com' !== $_SERVER['HTTP_HOST'] ) {
-		return; // Locally don't do this because it requires Apache rewrites.
-	}
-
-	// Symlink .htaccess to WP install root.
-	ob_start( function( $html ) {
-
-		return preg_replace_callback(
-			sprintf(
-				'#://%s/\?(p|page_id)=([0-9]+)#',
-				preg_quote( $_SERVER['HTTP_HOST'], '#' )
-			),
-			function( $matches ) {
-				return sprintf( '://%s/%s/%d.html', $_SERVER['HTTP_HOST'], $matches[1] === 'p' ? 'posts' : 'pages', $matches[2] );
-			},
-			$html
-		);
-	} );
-} );
-
 // Just disable cononical redirects all together, they aren't worth it: my server will figure it out.
 remove_filter( 'template_redirect', 'redirect_canonical' );
 
@@ -187,21 +121,6 @@ add_action( 'admin_menu', function() {
 	remove_submenu_page( 'users.php', 'wp-persistent-login-pricing' );
 
 }, PHP_INT_MAX );
-
-// Permalinks will always be plain.
-add_action( 'admin_menu', function () {
-
-	remove_submenu_page( 'options-general.php', 'options-permalink.php' );
-
-	add_action( 'admin_init', function() {
-
-		if ( true !== update_option( 'permalink_structure', '' ) ) {
-			return; // It wasn't fucked up, don't flush rules.
-		}
-
-		flush_rewrite_rules();
-	} );
-} );
 
 // Menus.
 add_action( 'init', function() {
@@ -487,3 +406,77 @@ add_filter( 'embed_oembed_html', function( $html, $url, $attr, $post_id ) {
 
 	return $html;
 }, 10, 4 );
+
+// Set permalink structure to /posts|pages/slug.html...
+add_action( 'init', function() {
+
+	// Posts...
+	add_rewrite_rule(
+		'^posts/([^/]+)\.html$',
+		'index.php?name=$matches[1]',
+		'top'
+	);
+
+	global $wp_rewrite;
+
+	$wp_rewrite->set_permalink_structure( '/%postname%.html' );
+
+	add_filter( 'post_type_link', function( $url, $post ) {
+
+		if ( $post->post_type === 'post' ) {
+			return home_url( "/posts/{$post->post_name}.html" );
+		}
+
+		return $url;
+	}, 10, 2 );
+
+	// Pages...
+	add_rewrite_rule(
+		'^pages/([^/]+)\.html$',
+		'index.php?pagename=$matches[1]',
+		'top'
+	);
+
+	add_filter( 'page_link', function( $url, $post_id ) {
+
+		$post = get_post( $post_id );
+
+		if ( $post && $post->post_type === 'page' ) {
+			return home_url( "/pages/{$post->post_name}.html" );
+		}
+
+		return $url;
+	}, 10, 2 );
+
+	// Tags...
+	add_rewrite_rule(
+		'^tags/([^/]+)\.html$',
+		'index.php?tag=$matches[1]',
+		'top'
+	);
+
+	add_filter( 'term_link', function( $url, $term, $taxonomy ) {
+
+		if ( $taxonomy === 'post_tag' ) {
+			return home_url( "/tags/{$term->slug}.html" );
+		}
+
+		return $url;
+	}, 10, 3 );
+
+	// /index.html
+	add_rewrite_rule(
+		'^index\.html$',
+		'index.php',
+		'top'
+	);
+
+	// Flush.
+	if ( 'flushed' === get_option( sprintf( 'aubreypwd/theme/permalinks_flushed/%s', filemtime( __FILE__ ) ) ) ) {
+		return; // Don't flush.
+	}
+
+	// Flush once.
+	flush_rewrite_rules();
+	update_option( sprintf( 'aubreypwd/theme/permalinks_flushed/%s', filemtime( __FILE__ ) ), 'flushed' );
+} );
