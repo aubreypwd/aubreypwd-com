@@ -46,7 +46,7 @@ RewriteRule . /index.php [L]
 ### ─────────────────────────────
 
 RedirectMatch 301 ^/chatbot/?$ https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
-RedirectMatch 302 ^/hire/?$ https://www.fiverr.com/aubreypwd?public_mode=true
+# RedirectMatch 302 ^/hire/?$ https://www.fiverr.com/aubreypwd?public_mode=true
 RedirectMatch 301 ^/how-i-work/?$ /pages/how-i-work.html
 RedirectMatch 301 ^/freelance/?$ /pages/freelance.html
 
