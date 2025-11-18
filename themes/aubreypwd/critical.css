@@ -111,6 +111,12 @@ html {
 				li.current-menu-item {
 					border-bottom: 2px solid var(--color-electric-blue);
 				}
+
+				li.menu-item-6963 a {
+					color: #d6bf40 !important;
+					border-bottom-style: dashed;
+					border-bottom-color: #d6bf40;
+				}
 			}
 
 			/* Profile in the header */
