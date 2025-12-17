@@ -49,6 +49,7 @@ RedirectMatch 301 ^/chatbot/?$ https://chatgpt.com/g/g-68f6b866bd008191a656f81da
 RedirectMatch 301 ^/how-i-work/?$ https://codeall.day
 RedirectMatch 301 ^/freelance/?$ https://codeall.day
 RedirectMatch 301 ^/hire/?$ https://codeall.day
+RewriteRule ^hire/?$ https://codeall.day/ [R=301,L]
 
 ### ─────────────────────────────
 ### Get these old style links to the right pages.
