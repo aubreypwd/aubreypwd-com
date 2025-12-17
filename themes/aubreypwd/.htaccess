@@ -48,8 +48,7 @@ RewriteRule . /index.php [L]
 RedirectMatch 301 ^/chatbot/?$ https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
 RedirectMatch 301 ^/how-i-work/?$ https://codeall.day
 RedirectMatch 301 ^/freelance/?$ https://codeall.day
-
-RewriteRule ^hire/?$ https://codeall.day/ [R=301,L]
+RedirectMatch 301 ^/hire/?$ https://codeall.day
 
 ### ─────────────────────────────
 ### Get these old style links to the right pages.
