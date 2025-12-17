@@ -1,5 +1,15 @@
 # Symlink to this .htaccess file from the root of the WP install.
 
+### ─────────────────────────────
+### Manual Redirects
+### ─────────────────────────────
+
+RedirectMatch 301 ^/chatbot/?$ https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
+RedirectMatch 301 ^/how-i-work/?$ https://codeall.day
+RedirectMatch 301 ^/freelance/?$ https://codeall.day
+RedirectMatch 301 ^/hire/?$ https://codeall.day
+
+
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
@@ -40,15 +50,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.php [L]
 </IfModule>
-
-### ─────────────────────────────
-### Manual Redirects
-### ─────────────────────────────
-
-RedirectMatch 301 ^/chatbot/?$ https://chatgpt.com/g/g-68f6b866bd008191a656f81da88ed3d0-let-s-chat-about-your-project
-RedirectMatch 301 ^/how-i-work/?$ https://codeall.day
-RedirectMatch 301 ^/freelance/?$ https://codeall.day
-RedirectMatch 301 ^/hire/?$ https://codeall.day
 
 ### ─────────────────────────────
 ### Get these old style links to the right pages.
